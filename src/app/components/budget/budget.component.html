@@ -1,0 +1,21 @@
+<div class="budget-container">
+    <h2>Presupuesto Mensual</h2>
+    <!-- <form (ngSubmit)="setBudget()">
+        <div class="form-group">
+            <label for="budgetAmount">Monto del Presupuesto:</label>
+            <input type="number" id="budgetAmount" [(ngModel)]="budgetAmount" name="budgetAmount" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Establecer Presupuesto</button>
+    </form> -->
+
+    <div *ngIf="currentBudget">
+        <h3>Presupuesto Actual</h3>
+        <p>Monto: {{ currentBudget.limit }}</p>
+        <p>Gastado: {{ currentBudget.currentAmount }}</p>
+        <p>Saldo Restante: {{ currentBudget.limit - currentBudget.currentAmount }}</p>
+    </div>
+
+    <div *ngIf="budgetAlert" class="alert alert-warning">
+        {{ budgetAlert }}
+    </div>
+</div>

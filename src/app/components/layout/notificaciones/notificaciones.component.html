@@ -1,0 +1,20 @@
+<div class="gfh-notificaciones-container rounded-start">
+    <div class="gfh-title-notificaciones-container">
+        <p class="gfh-title-notificaciones">Notificaciones</p>
+        <button class="gfh-btn-cerrar-notificaciones" (click)="closeNotificaciones.emit()">
+            Cerrar<img src="assets/img/x-cerrar-notificaciones.svg" alt="" class="ms-1">
+        </button>
+    </div>
+    <ng-container *ngFor="let notificacion of notificaciones">
+        <div class="gfh-notificacion-container" [ngClass]="{'gfh-notificacion-no-leidas': !notificacion.leido}">
+            <div class="d-flex justify-content-between">
+                <p class="gfh-title-notificacion">{{ notificacion.titulo }}</p>
+                <p class="gfh-hora-fecha-notificacion">{{ notificacion.fechaHora }}</p>
+            </div>
+            <div>
+                <p class="gfh-text-notificacion">{{ notificacion.detalle }}</p>
+            </div>
+        </div>
+    </ng-container>
+    <div class="gfh-margin-bottom"><p>.</p></div>
+</div>

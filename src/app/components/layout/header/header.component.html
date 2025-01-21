@@ -1,0 +1,35 @@
+<div class="alert alert-info message-container" *ngIf="isNewAppVersionAvailable">
+    <h4 class="mb-0 fw-bold">Nueva versión de la aplicación</h4>
+    <p>Una nueva versión de la aplicación está disponible. Actualice la ventana de su navegador o haga clic en el botón Actualizar.</p>
+    <button (click)="refreshApp()" class="btn btn-primary rounded-pill px-5 py-1">Refresh</button>
+</div>
+<nav class="navbar sticky-top gfh-nav-custom">
+    <div class="row w-100 my-1">
+        <div class="col-12 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-start">
+                <img src="assets/img/logo-otic-sofofa-main.svg" alt="logo-sofofa" width="83px" height="33px">
+                <p class="gfh-titulo-header m-0 ms-4">Cierre Clientes</p>
+            </div>
+            <div class="d-flex align-items-center justify-content-end">
+                <button type="button" class="gfh-btn-notificaciones" (click)="toggleNotificaciones()">
+                    <img src="assets/img/icon-notificaciones.svg" alt="">
+                    <span class="gfh-badge-notificaciones rounded-pill">
+                        {{ (nroNotificacionesNoLeidas > 100) ? '99+' : nroNotificacionesNoLeidas }}
+                    </span>
+                </button>
+                
+                <div class="d-flex flex-column">
+                    <p class="mb-0 gfh-nombre-usuario">
+                        {{ currentUser?.attributes?.name[0] || currentUser?.firstName + ' ' + currentUser?.lastName }}
+                    </p>
+                    <ng-container *ngIf="currentUser?.organizations">
+                        <p class="mb-0 gfh-cargo-usuario">{{ currentUser?.organizations[0]?.title | titlecase }}</p>
+                    </ng-container>
+                    <ng-container *ngIf="!currentUser?.organizations">
+                        <p class="mb-0 gfh-cargo-usuario">Cargo no especificado</p>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

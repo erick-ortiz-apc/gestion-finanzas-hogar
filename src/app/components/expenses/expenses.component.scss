@@ -1,0 +1,42 @@
+/* Estilos específicos para el componente de gastos */
+
+.expenses-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.expense-item:last-child {
+    border-bottom: none;
+}
+
+.expense-amount {
+    font-weight: bold;
+    color: #d32f2f; /* Color rojo para gastos */
+}
+
+.add-expense-button {
+    margin-top: 20px;
+    background-color: #4caf50; /* Color verde para el botón */
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .expenses-container {
+        padding: 10px;
+    }
+
+    .expense-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

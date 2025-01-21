@@ -1,1 +1,110 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* INICIO ESTILOS BODY */
+body {
+    margin: 0px !important;
+    color: #EFF6FF;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, a, div, ul, ol, li {
+    color: #EFF6FF;
+}
+div.gfh-pages-body {
+    background-color: #121212 !important;
+    min-height: calc(100vh - 57px) !important;
+}
+/* FIN ESTILOS BODY */
+
+/* INICIO ESTILOS HEADER */
+.gfh-nav-custom {
+    background-color: #1E1E1E !important;
+    border-bottom: 2px solid #2B2B2B !important;
+    padding: 0px 10px 0px 30px !important;
+    min-height: 57px !important;
+    /* max-height: 57px !important; */
+}
+
+.gfh-titulo-header {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 36px !important;
+    color: #EFF6FF !important;
+}
+
+.gfh-indicadores {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    line-height: 36px !important;
+    color: #EFF6FF !important;
+}
+/* FIN ESTILOS HEADER */
+
+/* INICIO ESTILOS SIDEBAR */
+.gfh-sidebar-container {
+    height: calc(100% - 57px) !important;
+    position: fixed !important;
+    top: auto !important;
+    left: 0 !important;
+    background-color: #1E1E1E !important;
+    border-right: 2px solid #2B2B2B !important;
+    transition: 0.5s !important;
+    overflow-x: hidden !important;
+    white-space: nowrap !important;
+    box-shadow: 5px 0px 10px 0px #0000001A !important;
+    z-index: 2 !important;
+}
+
+.gfh-container-btn-sidebar {
+    padding: 5px 10px !important;
+}
+
+.gfh-btn-sidebar {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 23.68px !important;
+    text-align: left !important;
+    color: #969696 !important;
+}
+
+.gfh-btn-sidebar.selected {
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+    background-color: #2B2B2B !important;
+    border-radius: 10px !important;
+}
+
+.gfh-btn-sidebar:hover {
+    color: #EFF6FF !important;
+    background-color: #2B2B2B !important;
+    border-radius: 10px !important;
+}
+
+.gfh-btn-sidebar img.selected {
+    padding: 10px !important;
+    margin-right: 10px !important;
+    border-radius: 10px !important;
+    background: #2B2B2B !important;
+}
+
+.gfh-btn-sidebar img {
+    padding: 10px !important;
+    margin-right: 10px !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+}
+
+.gfh-text-off {
+    color: transparent !important;
+}
+/* FIN ESTILOS SIDEBAR */
