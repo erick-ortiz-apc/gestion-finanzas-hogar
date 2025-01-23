@@ -1,0 +1,607 @@
+{
+  "year": 2024,
+  "months": [
+    {
+      "month": 1,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-01-01"
+        },
+        {
+          "id": 2,
+          "description": "Freelance Project",
+          "amount": 800000,
+          "category": "Freelance",
+          "date": "2024-01-15"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-01-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-01-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-01-12"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-01-18"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-01-25"
+        }
+      ]
+    },
+    {
+      "month": 2,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-02-01"
+        },
+        {
+          "id": 2,
+          "description": "Venta de producto",
+          "amount": 700000,
+          "category": "Venta",
+          "date": "2024-02-20"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-02-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 160000,
+          "category": "Alimentos",
+          "date": "2024-02-11"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 55000,
+          "category": "Transporte",
+          "date": "2024-02-14"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 90000,
+          "category": "Servicios",
+          "date": "2024-02-19"
+        },
+        {
+          "id": 5,
+          "description": "Móvil",
+          "amount": 45000,
+          "category": "Servicios",
+          "date": "2024-02-27"
+        }
+      ]
+    },
+    {
+      "month": 3,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-03-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-03-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-03-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-03-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-03-20"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-03-25"
+        }
+      ]
+    },
+    {
+      "month": 4,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-04-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-04-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-04-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-04-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-04-20"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-04-25"
+        }
+      ]
+    },
+    {
+      "month": 5,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-05-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-05-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-05-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-05-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-05-20"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-05-25"
+        }
+      ]
+    },
+    {
+      "month": 6,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-06-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-06-05"
+        },
+        { 
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-06-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-06-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-06-20"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-06-25"
+        }
+      ]
+    },
+    {
+      "month": 7,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-07-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-07-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-07-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-07-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-07-20"
+        },
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-07-25"
+        }
+      ]
+    },
+    {
+      "month": 8,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-08-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-08-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-08-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-08-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-08-20"
+        },        
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-08-25"
+        }
+      ]
+    },
+    {
+      "month": 9,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-09-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-09-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-09-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-09-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-09-20"
+        },        
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-09-25"
+        }
+      ]
+    },
+    {
+      "month": 10,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-10-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-10-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-10-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-10-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-10-20"
+        },        
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-10-25"
+        }
+      ]
+    },
+    {
+      "month": 11,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-11-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-11-05"
+        },
+        { 
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-11-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-11-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-11-20"
+        },        
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-11-25"
+        }
+      ]
+    },
+    {
+      "month": 12,
+      "incomes": [
+        {
+          "id": 1,
+          "description": "Sueldo",
+          "amount": 500000,
+          "category": "Sueldo",
+          "date": "2024-12-01"
+        }
+      ],
+      "expenses": [
+        {
+          "id": 1,
+          "description": "Arriendo",
+          "amount": 400000,
+          "category": "Vivienda",
+          "date": "2024-12-05"
+        },
+        {
+          "id": 2,
+          "description": "Supermercado",
+          "amount": 150000,
+          "category": "Alimentos",
+          "date": "2024-12-10"
+        },
+        {
+          "id": 3,
+          "description": "Transporte",
+          "amount": 50000,
+          "category": "Transporte",
+          "date": "2024-12-15"
+        },
+        {
+          "id": 4,
+          "description": "Servicios Básicos",
+          "amount": 80000,
+          "category": "Servicios",
+          "date": "2024-12-20"
+        },        
+        {
+          "id": 5,
+          "description": "Internet",
+          "amount": 60000,
+          "category": "Servicios",
+          "date": "2024-12-25"
+        }
+      ]
+    }    
+  ]
+}

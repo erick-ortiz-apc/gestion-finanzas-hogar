@@ -1,12 +1,12 @@
 <nav class="navbar sticky-top gfh-nav-custom">
   <div class="row w-100 my-1">
     <div class="col-6 ps-0">
-      <p class="gfh-titulo-header m-0">Gestión Finanzas Hogar</p>
+      <img src="/assets/img/logo-gfh.svg" alt="" height="36">
     </div>
     <div class="col-6 d-flex justify-content-end align-items-center gap-5">
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">FECHA: <b>{{ fechaActual | date:'dd-MM-yyyy' }}</b></span>
-      <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">UF:  <b>{{ ufValue | currency:'USD' }}</b></span>
-      <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">DÓLAR: <b>{{ dolarValue | currency:'USD' }}</b></span>
+      <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">UF:  <b>{{ ufValue | localeFormat }}</b></span>
+      <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">DÓLAR: <b>{{ dolarValue | localeFormat }}</b></span>
       <ng-template #loading>Cargando...</ng-template>
     </div>
   </div>

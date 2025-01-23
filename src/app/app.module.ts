@@ -16,6 +16,9 @@ import { FinanceService } from './services/finance.service';
 import { NotificationService } from './services/notification.service';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { LocaleFormatPipe } from './pipes/locale-format.pipe';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OdometerComponent } from './components/odometer/odometer.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +31,18 @@ import { HttpClientModule } from '@angular/common/http';
     SavingsComponent,
     NotificationsComponent,
     StatisticsComponent,
-    ReportsComponent
+    ReportsComponent,
+    LocaleFormatPipe,
+    OdometerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot([])
+    NgbDropdownModule,
+    RouterModule.forRoot([]),
+    NgbModule
   ],
   providers: [FinanceService, NotificationService],
   bootstrap: [AppComponent]

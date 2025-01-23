@@ -10,6 +10,7 @@ body {
 h1, h2, h3, h4, h5, h6, p, span, a, div, ul, ol, li {
     color: #EFF6FF;
 }
+
 div.gfh-pages-body {
     background-color: #121212 !important;
     min-height: calc(100vh - 57px) !important;
@@ -27,7 +28,7 @@ div.gfh-pages-body {
 
 .gfh-titulo-header {
     font-family: 'Nunito', sans-serif !important;
-    font-size: 16px !important;
+    font-size: 18px !important;
     font-weight: 700 !important;
     line-height: 36px !important;
     color: #EFF6FF !important;
@@ -108,3 +109,85 @@ div.gfh-pages-body {
     color: transparent !important;
 }
 /* FIN ESTILOS SIDEBAR */
+
+/* OTRAS CLASES */
+.ghf-btn {
+    background: #2B2B2B !important;
+    color: #EFF6FF !important;
+    min-width: 160px !important;
+}
+
+.ghf-btn-dropdown {
+    background-color: #2B2B2B !important;
+    text-align: center !important;
+    color: #EFF6FF !important;
+    padding: 0px !important;
+}
+
+.ghf-btn-dropdown-options {
+    background-color: #2B2B2B !important;
+    text-align: center !important;
+    color: #EFF6FF !important;
+}
+
+.ghf-btn-dropdown-options:hover {
+    background-color: #1E1E1E !important;
+}
+
+.gfh-titulo-component {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+}
+
+.gfh-titulo {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+}
+
+.gfh-texto-grafico {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    color: #666666 !important;
+    margin-top: 10px !important;
+}
+
+.gfh-card {
+    background-color: #1E1E1E !important;
+    border: 1px solid #2B2B2B !important;
+    border-radius: 10px !important;
+    padding: 10px 20px !important;
+}
+
+.gfh-table {
+    border: 1px solid #2B2B2B !important;
+}
+
+.gfh-table > thead > tr > th {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+    background: #2B2B2B !important;
+    text-align: center !important;
+}
+
+.gfh-table > tbody > tr > td {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #EFF6FF !important;
+    background: #1E1E1E !important;
+    border-bottom: solid 1px #2B2B2B !important;
+}
+
+.gfh-legend {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    font-family: 'Nunito', sans-serif !important;
+}
