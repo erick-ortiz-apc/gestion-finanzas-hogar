@@ -6,8 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "deploy": "ng build --configuration production --base-href /gestion-finanzas-hogar/ ; powershell -Command \"New-Item -ItemType File -Path dist/gestion-finanzas-hogar/.nojekyll\" ; npx angular-cli-ghpages --dir=dist/gestion-finanzas-hogar"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

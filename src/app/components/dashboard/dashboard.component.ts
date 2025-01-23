@@ -243,14 +243,14 @@ export class DashboardComponent implements OnInit {
 
   getArrowIcon(current: number, previous: number | null): string {
     if (previous === null) {
-      return '/assets/img/flecha-no.svg';
+      return 'assets/img/flecha-no.svg';
     }
     if (current > previous) {
-      return '/assets/img/flecha-up.svg';
+      return 'assets/img/flecha-up.svg';
     } else if (current < previous) {
-      return '/assets/img/flecha-down.svg';
+      return 'assets/img/flecha-down.svg';
     } else {
-      return '/assets/img/flecha-no.svg';
+      return 'assets/img/flecha-no.svg';
     }
   }
   
