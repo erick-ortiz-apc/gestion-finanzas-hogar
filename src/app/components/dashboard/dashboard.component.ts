@@ -17,7 +17,12 @@ export class DashboardComponent implements OnInit {
   valueAnualTotalGastosE: number = 0;
   valueAnualTotalGastosNoE: number = 0;
   valueAnualTotalRestante: number = 0;
-
+  dataLineIngresos!: any;
+  dataLineGastos!: any;
+  dataBarTotales!: any;
+  optionsLine!: any;
+  optionsBar!: any;
+  
   data = [
     {
       year: '2022',
@@ -82,26 +87,19 @@ export class DashboardComponent implements OnInit {
       ]
     }
   ];
-  dataLineIngresos!: any;
-  dataLineGastos!: any;
-  dataBarTotales!: any;
-  optionsLine!: any;
-  optionsBar!: any;
   
   constructor() {}
 
   ngOnInit(): void {
+    const currentYear = new Date().getFullYear();
+    this.yearSelected = this.data.some((year: any) => year.year == currentYear) 
+      ? String(currentYear)
+      : String(currentYear - 1);
+
     this.year = this.data.find(year => year.year === this.yearSelected)!;
-    console.log(this.year);
-
-    this.yearsList = this.data.map(year => year.year);
-    console.log(this.yearsList);
-
-    this.yearSelected = this.yearsList[0];
-    console.log(this.yearSelected);
-
-    this.yearsList = this.yearsList.filter(year => year !== this.yearSelected);
-    console.log(this.yearsList);
+    this.yearsList = this.data
+      .map(year => year.year)
+      .filter(year => year !== this.yearSelected);
 
     this.dataLineIngresos = {
       labels: this.year.months.slice(1).map((month: any) => month.shortName),
@@ -161,6 +159,15 @@ export class DashboardComponent implements OnInit {
       plugins: {
         legend: {
           display: true
+        },
+        tooltip: {
+          backgroundColor: '#121212',
+          callbacks: {
+            label: function(context: any) {
+              const value = context.raw;
+              return `Valor: $ ${value.toLocaleString('es-CL')}`;
+            }
+          }
         }
       },
       scales: {
@@ -178,11 +185,21 @@ export class DashboardComponent implements OnInit {
       }
     };
     
+    
     this.optionsBar = {
       responsive: true,
       plugins: {
         legend: {
           display: true
+        },
+        tooltip: {
+          backgroundColor: '#121212',
+          callbacks: {
+            label: function(context: any) {
+              const value = context.raw;
+              return `Valor: $ ${value.toLocaleString('es-CL')}`;
+            }
+          }
         }
       },
       scales: {

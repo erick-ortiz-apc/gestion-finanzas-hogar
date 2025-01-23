@@ -1,9 +1,9 @@
 <nav class="navbar sticky-top gfh-nav-custom">
   <div class="row w-100 my-1">
-    <div class="col-6 ps-0">
+    <div class="col-2 ps-0">
       <img src="/assets/img/logo-gfh.svg" alt="" height="36">
     </div>
-    <div class="col-6 d-flex justify-content-end align-items-center gap-5">
+    <div class="col-10 d-flex justify-content-end align-items-center gap-5">
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">FECHA: <b>{{ fechaActual | date:'dd-MM-yyyy' }}</b></span>
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">UF:  <b>{{ ufValue | localeFormat }}</b></span>
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">DÓLAR: <b>{{ dolarValue | localeFormat }}</b></span>
@@ -19,127 +19,74 @@
     <div class="row">
       <div class="col-12">
         <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/dashboard"
+          <button type="button" class="gfh-btn-sidebar" routerLink="/dashboard"
             (click)="selectOptionSidebar('dashboard')"
             [ngClass]="{ selected: activeDashboard && !sidebarComprimido }"
             (mouseenter)="cambarColorIcono(false, 'dashboard')"
             (mouseleave)="cambarColorIcono(true, 'dashboard')">
-            <img [hidden]="!switchDashboard" src="/assets/img/icon-dashboard-blue.svg">
-            <img [hidden]="switchDashboard" src="/assets/img/icon-dashboard{{ activeDashboard ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeDashboard && sidebarComprimido }" />
+            <img [hidden]="!switchDashboard" src="/assets/img/icon-dashboard-active.svg" width="40px"/>
+            <img [hidden]="switchDashboard" src="/assets/img/icon-dashboard{{ activeDashboard ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeDashboard && sidebarComprimido }" width="40px"/>
             Dashboard
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Botón Mantenedor Usuarios -->
+    <!-- Botón Ingresos -->
     <div class="row">
       <div class="col-12">
         <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-mantenedor-usuarios"
-            (click)="selectOptionSidebar('mantenedorUsuarios')"
-            [ngClass]="{ selected: activeMantenedorUsuarios && !sidebarComprimido }"
-            (mouseenter)="cambarColorIcono(false, 'mantenedorUsuarios')"
-            (mouseleave)="cambarColorIcono(true, 'mantenedorUsuarios')">
-            <img [hidden]="!switchMantenedorUsuarios" src="/assets/img/icon-mantenedor-usuarios-blue.svg">
-            <img [hidden]="switchMantenedorUsuarios" src="/assets/img/icon-mantenedor-usuarios{{ activeMantenedorUsuarios ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeMantenedorUsuarios && sidebarComprimido }" />
-            Mantenedor Usuarios
+          <button type="button" class="gfh-btn-sidebar" routerLink="/ingresos"
+            (click)="selectOptionSidebar('ingresos')"
+            [ngClass]="{ selected: activeIngresos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'ingresos')"
+            (mouseleave)="cambarColorIcono(true, 'ingresos')">
+            <img [hidden]="!switchIngresos" src="/assets/img/icon-ingresos-active.svg" width="40px"/>
+            <img [hidden]="switchIngresos" src="/assets/img/icon-ingresos{{ activeIngresos ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeIngresos && sidebarComprimido }" width="40px"/>
+            Gestión de Ingresos
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Botón Factor de Corrección -->
+    <!-- Botón Gastos -->
     <div class="row">
       <div class="col-12">
         <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-factor-correccion"
-            (click)="selectOptionSidebar('factorCorreccion')"
-            [ngClass]="{ selected: activeFactorCorreccion && !sidebarComprimido }"
-            (mouseenter)="cambarColorIcono(false, 'factorCorreccion')"
-            (mouseleave)="cambarColorIcono(true, 'factorCorreccion')">
-            <img [hidden]="!switchFactorCorreccion" src="/assets/img/icon-factor-correccion-blue.svg">
-            <img [hidden]="switchFactorCorreccion" src="/assets/img/icon-factor-correccion{{ activeFactorCorreccion ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeFactorCorreccion && sidebarComprimido }" />
-            Factor de Corrección
+          <button type="button" class="gfh-btn-sidebar" routerLink="/gastos"
+            (click)="selectOptionSidebar('gastos')"
+            [ngClass]="{ selected: activeGastos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'gastos')"
+            (mouseleave)="cambarColorIcono(true, 'gastos')">
+            <img [hidden]="!switchGastos" src="/assets/img/icon-gastos-active.svg" width="40px"/>
+            <img [hidden]="switchGastos" src="/assets/img/icon-gastos{{ activeGastos ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeGastos && sidebarComprimido }" width="40px"/>
+            Gestión de Gastos
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Botón Historial Actividades -->
+    <!-- Botón Pagos -->
     <div class="row">
       <div class="col-12">
         <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-historial-actividades"
-            (click)="selectOptionSidebar('historialActividades')"
-            [ngClass]="{ selected: activeHistorialActividades && !sidebarComprimido }"
-            (mouseenter)="cambarColorIcono(false, 'historialActividades')"
-            (mouseleave)="cambarColorIcono(true, 'historialActividades')">
-            <img [hidden]="!switchHistorialActividades" src="/assets/img/icon-historial-actividades-blue.svg"/>
-            <img [hidden]="switchHistorialActividades" src="/assets/img/icon-historial-actividades{{ activeHistorialActividades ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeHistorialActividades && sidebarComprimido }" />
-            Historial Actividades
+          <button type="button" class="gfh-btn-sidebar" routerLink="/pagos"
+            (click)="selectOptionSidebar('pagos')"
+            [ngClass]="{ selected: activePagos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'pagos')"
+            (mouseleave)="cambarColorIcono(true, 'pagos')">
+            <img [hidden]="!switchPagos" src="/assets/img/icon-pagos-active.svg" width="40px"/>
+            <img [hidden]="switchPagos" src="/assets/img/icon-pagos{{ activePagos ? '-active' : '' }}.svg"  
+            [ngClass]="{ selected: activePagos && sidebarComprimido }" width="40px"/>
+            Portal de Pagos
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Botón Cierre Clientes -->
-    <div class="row">
-      <div class="col-12">
-        <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-cierre-clientes"
-            (click)="selectOptionSidebar('cierreClientes')"
-            [ngClass]="{ selected: activeCierreClientes && !sidebarComprimido }"
-            (mouseenter)="cambarColorIcono(false, 'cierreClientes')"
-            (mouseleave)="cambarColorIcono(true, 'cierreClientes')">
-            <img [hidden]="!switchCierreClientes" src="/assets/img/icon-cierre-clientes-blue.svg"/>
-            <img [hidden]="switchCierreClientes" src="/assets/img/icon-cierre-clientes{{ activeCierreClientes ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeCierreClientes && sidebarComprimido }" />
-            Cierre Clientes
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Botón Contabilizar -->
-    <div class="row">
-      <div class="col-12">
-        <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-contabilizar"
-            (click)="selectOptionSidebar('contabilizar')"
-            [ngClass]="{ selected: activeContabilizar && !sidebarComprimido }"
-            (mouseenter)="cambarColorIcono(false, 'contabilizar')"
-            (mouseleave)="cambarColorIcono(true, 'contabilizar')">
-            <img [hidden]="!switchContabilizar" src="/assets/img/icon-contabilizar-blue.svg"/>
-            <img [hidden]="switchContabilizar" src="/assets/img/icon-contabilizar{{ activeContabilizar ? '-blue' : '' }}.svg"
-            [ngClass]="{ selected: activeContabilizar && sidebarComprimido }" />
-            Contabilizar
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Botón Reporte Cierre Clientes -->
-    <div class="row">
-      <div class="col-12">
-        <div class="gfh-container-btn-sidebar">
-          <button type="button" class="gfh-btn-sidebar" routerLink="/private/listado-reporte-cierre-clientes"
-            (click)="selectOptionSidebar('reporteCierreClientes')"
-            [ngClass]="{selected: activeReporteCierreClientes && !sidebarComprimido}"
-            (mouseenter)="cambarColorIcono(false, 'reporteCierreClientes')"
-            (mouseleave)="cambarColorIcono(true, 'reporteCierreClientes')">
-            <img [hidden]="!switchReporteCierreClientes"src="/assets/img/icon-reporte-cierre-clientes-blue.svg" />
-            <img [hidden]="switchReporteCierreClientes" src="/assets/img/icon-reporte-cierre-clientes{{activeReporteCierreClientes ? '-blue' : ''}}.svg"
-            [ngClass]="{selected: activeReporteCierreClientes && sidebarComprimido}" />
-            Reporte Cierre Clientes
-          </button>
-        </div>
-      </div>
-    </div>
   </nav>
 </div>
 

@@ -18,45 +18,49 @@
       <!-- AQUI VA TODO LO DE LA COMPONENTE -->
       <div class="col-12">
         <div class="row">
-          <div class="col-12 col-lg-6 col-xl-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
-              <div class="card-body d-flex align-items-center">
-                <div><img src="./assets/img/money-in.svg" alt="" width="90px"></div>
+              <div class="card-body p-0 d-flex align-items-center">
+                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-in.svg" alt="" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-in.svg" alt="" width="37px"></div>
                 <div class="ms-3">
-                  <p class="gfh-titulo">Total Anual Ingresos</p>
+                  <p class="gfh-titulo-card mb-1">Anual Ingresos</p>
                   <app-odometer [endValue]="valueAnualTotalIngresos"></app-odometer>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6 col-xl-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
-              <div class="card-body d-flex align-items-center">
-                <div><img src="./assets/img/money-out-e.svg" alt="" width="90px"></div>
+              <div class="card-body p-0 d-flex align-items-center">
+                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-out-e.svg" alt="" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-out-e.svg" alt="" width="37px"></div>
                 <div class="ms-3">
-                  <p class="gfh-titulo">Total Anual Gastos Esenciales</p>
+                  <p class="gfh-titulo-card mb-1">Anual Gastos Esenciales</p>
                   <app-odometer [endValue]="valueAnualTotalGastosE"></app-odometer>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6 col-xl-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
-              <div class="card-body d-flex align-items-center">
-                <div><img src="./assets/img/money-out-not-e.svg" alt="" width="90px"></div>
+              <div class="card-body p-0 d-flex align-items-center">
+                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-out-not-e.svg" alt="" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-out-not-e.svg" alt="" width="37px"></div>
                 <div class="ms-3">
-                  <p class="gfh-titulo">Total Anual No Esenciales</p>
+                  <p class="gfh-titulo-card mb-1">Gastos Anual No Esenciales</p>
                   <app-odometer [endValue]="valueAnualTotalGastosNoE"></app-odometer>
                 </div>
               </div>
             </div>
           </div>  
-          <div class="col-12 col-lg-6 col-xl-3 mb-4">
+          <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
-              <div class="card-body d-flex align-items-center">
-                <div><img src="./assets/img/money-free.svg" alt="" width="90px"></div>
+              <div class="card-body p-0 d-flex align-items-center">
+                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-free.svg" alt="" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-free.svg" alt="" width="37px"></div>
                 <div class="ms-3">
-                  <p class="gfh-titulo">Total Anual Restante</p>
+                  <p class="gfh-titulo-card mb-1">Anual Restante</p>
                   <app-odometer [endValue]="valueAnualTotalRestante"></app-odometer>
                 </div>
               </div>
@@ -64,34 +68,45 @@
           </div>
           <div class="col-12 col-xl-4 mb-4">
             <div class="card gfh-card">
-              <div class="card-body">
-                <p class="gfh-titulo">Gráfico de Ingresos</p>
+              <div class="card-body p-0">
+                <p class="gfh-titulo-card">Gráfico de Ingresos</p>
                 <canvas id="chartIngresos">{{ chartIngresos }}</canvas>
               </div>
             </div>
           </div>
           <div class="col-12 col-xl-4 mb-4">
             <div class="card gfh-card">
-              <div class="card-body">
-                <p class="gfh-titulo">Gráfico de Gastos</p>
+              <div class="card-body p-0">
+                <p class="gfh-titulo-card">Gráfico de Gastos</p>
                 <canvas id="chartGastos">{{ chartGastos }}</canvas>
               </div>
             </div>
           </div>
           <div class="col-12 col-xl-4 mb-4">
             <div class="card gfh-card">
-              <div class="card-body">
-                <p class="gfh-titulo">Gráfico de Totales</p>
+              <div class="card-body p-0">
+                <p class="gfh-titulo-card">Gráfico de Totales</p>
                 <canvas id="chartTotales">{{ chartTotales }}</canvas>
               </div>
             </div>
           </div>
           <div class="col-12 mb-4">
             <div class="card gfh-card">
-              <div class="card-body">
+              <div class="card-body p-0">
                 <div class="row">
-                  <div class="col-12">
-                    <p class="gfh-titulo">Listado de Tendencia</p>
+                  <div class="col-12 d-flex align-items-center justify-content-between">
+                    <p class="gfh-titulo-card">Listado de Tendencia</p>
+                    <div class="gfh-legend">
+                      <span class="gfh-texto-grafico">
+                        <img src="/assets/img/flecha-up.svg" alt="Icono" class="me-1">Mayor al mes anterior
+                      </span>
+                      <span class="gfh-texto-grafico">
+                        <img src="/assets/img/flecha-no.svg" alt="Icono" class="me-1">Igual al mes anterior
+                      </span>
+                      <span class="gfh-texto-grafico">
+                        <img src="/assets/img/flecha-down.svg" alt="Icono" class="me-1">Menor al mes anterior
+                      </span>
+                    </div>
                   </div>
                   <div class="col-12">
                     <table class="table table-borderless gfh-table">
@@ -108,38 +123,27 @@
                         <ng-container *ngFor="let month of year.months; let i = index">
                           <tr *ngIf="i > 0">
                             <td>{{ month.name }}</td>
-                            <td class="text-center">
-                              {{ month.totalIncome | localeFormat }}
+                            <td class="text-center gfh-valor-tabla">
                               <img [src]="getArrowIcon(month.totalIncome, i > 0 ? year.months[i - 1].totalIncome : null)" alt="Icono" width="12px"/>
+                              {{ month.totalIncome | localeFormat }}
                             </td>
-                            <td class="text-center">
-                              {{ month.essentialExpenses | localeFormat }}
+                            <td class="text-center gfh-valor-tabla">
                               <img [src]="getArrowIcon(month.essentialExpenses, i > 0 ? year.months[i - 1].essentialExpenses : null)" alt="Icono" width="12px"/>
+                              {{ month.essentialExpenses | localeFormat }}
                             </td>
-                            <td class="text-center">
-                              {{ month.nonEssentialExpenses | localeFormat }}
+                            <td class="text-center gfh-valor-tabla">
                               <img [src]="getArrowIcon(month.nonEssentialExpenses, i > 0 ? year.months[i - 1].nonEssentialExpenses : null)" alt="Icono" width="12px"/>
+                              {{ month.nonEssentialExpenses | localeFormat }}
                             </td>
-                            <td class="text-center">
-                              {{ (month.totalIncome - month.essentialExpenses - month.nonEssentialExpenses) | localeFormat }}
+                            <td class="text-center gfh-valor-tabla">
                               <img [src]="getArrowIcon((month.totalIncome - month.essentialExpenses - month.nonEssentialExpenses), i > 0 ? (year.months[i - 1].totalIncome - year.months[i - 1].essentialExpenses - year.months[i - 1].nonEssentialExpenses) : null)" alt="Icono" width="12px"/>
+                              {{ (month.totalIncome - month.essentialExpenses - month.nonEssentialExpenses) | localeFormat }}
                             </td>
                           </tr>
                         </ng-container>
                       </tbody>
                     </table>
                   </div>
-                </div>
-                <div class="gfh-legend">
-                  <span class="gfh-texto-grafico">
-                    <img src="/assets/img/flecha-up.svg" alt="Icono" class="me-1">Mayor al mes anterior
-                  </span>
-                  <span class="gfh-texto-grafico">
-                    <img src="/assets/img/flecha-no.svg" alt="Icono" class="me-1">Igual al mes anterior
-                  </span>
-                  <span class="gfh-texto-grafico">
-                    <img src="/assets/img/flecha-down.svg" alt="Icono" class="me-1">Menor al mes anterior
-                  </span>
                 </div>
               </div>
             </div>

@@ -15,21 +15,14 @@ export class AppComponent {
   sidebarComprimido: boolean = true;
 
   activeDashboard: boolean = true;
-  activeMantenedorUsuarios: boolean = false;
-  activeFactorCorreccion: boolean = false;
-  activeHistorialActividades: boolean = false;
-  activeAperturaExclusion: boolean = false;
-  activeCierreClientes: boolean = false;
-  activeContabilizar: boolean = false;
-  activeReporteCierreClientes: boolean = false;
+  activeIngresos: boolean = false;
+  activeGastos: boolean = false;
+  activePagos: boolean = false;
 
   switchDashboard = false;
-  switchMantenedorUsuarios = false;
-  switchFactorCorreccion = false;
-  switchHistorialActividades = false;
-  switchCierreClientes = false;
-  switchContabilizar = false;
-  switchReporteCierreClientes = false;
+  switchIngresos = false;
+  switchGastos = false;
+  switchPagos = false;
 
   fechaActual: Date | null = null;
   ufValue: number | null = null;
@@ -69,35 +62,17 @@ export class AppComponent {
     const currentRoute = this._router.url;
     console.log('Ruta actual:', currentRoute);
 
-    if (currentRoute === '/private/dashboard') {
+    if (currentRoute === '/dashboard') {
       console.log('dashboard');
       this.selectOptionSidebar('dashboard');
-    } else if (currentRoute === '/private/listado-mantenedor-usuarios') {
-      this.selectOptionSidebar('mantenedorUsuarios');
-    } else if (currentRoute.includes('/private/gestionar-usuario')) {
-      this.selectOptionSidebar('mantenedorUsuarios');
-    } else if (currentRoute === '/private/listado-factor-correccion') {
-      this.selectOptionSidebar('factorCorreccion');
-    } else if (currentRoute === '/private/listado-historial-actividades') {
-      this.selectOptionSidebar('historialActividades');
-    } else if (currentRoute === '/private/listado-apertura-exclusion') {
-      this.selectOptionSidebar('aperturaExclusion');
-    } else if (currentRoute.includes('/private/ver-proceso-apertura-exclusion')) {
-      this.selectOptionSidebar('aperturaExclusion');
-    } else if (currentRoute === '/private/listado-cierre-clientes') {
-      this.selectOptionSidebar('cierreClientes');
-    } else if (currentRoute === '/private/gestionar-proceso-cierre-cliente') {
-      this.selectOptionSidebar('cierreClientes');
-    } else if (currentRoute.includes('/private/ver-proceso-cierre-cliente')) {
-      this.selectOptionSidebar('cierreClientes');
-    } else if (currentRoute.includes('/private/gestionar-cierre-cliente')) {
-      this.selectOptionSidebar('cierreClientes');
-    } else if (currentRoute === '/private/listado-contabilizar') {
-      this.selectOptionSidebar('contabilizar');
-    } else if (currentRoute === '/private/listado-reporte-cierre-clientes') {
-      this.selectOptionSidebar('reporteCierreClientes');
+    } else if (currentRoute === '/ingresos') {
+      this.selectOptionSidebar('ingresos');
+    } else if (currentRoute === '/gastos') {
+      this.selectOptionSidebar('gastos');
+    } else if (currentRoute === '/pagos') {
+      this.selectOptionSidebar('pagos');
     } else {
-      console.warn('Ruta no reconocida:', currentRoute);
+      this.selectOptionSidebar('dashboard');
     }
   }
 
@@ -105,76 +80,33 @@ export class AppComponent {
     switch (option) {
       case 'dashboard':
         this.activeDashboard = true;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = false;
+        this.activeIngresos = false;
+        this.activeGastos = false;
+        this.activePagos = false;
         break;
-      case 'mantenedorUsuarios':
+      case 'ingresos':
         this.activeDashboard = false;
-        this.activeMantenedorUsuarios = true;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = false;
+        this.activeIngresos = true;
+        this.activeGastos = false;
+        this.activePagos = false;
         break;
-      case 'factorCorreccion':
+      case 'gastos':
         this.activeDashboard = false;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = true;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = false;
+        this.activeIngresos = false;
+        this.activeGastos = true;
+        this.activePagos = false;    
         break;
-      case 'historialActividades':
+      case 'pagos':
         this.activeDashboard = false;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = true;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = false;
-        break;
-      case 'cierreClientes':
-        this.activeDashboard = false;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = true;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = false;
-        break;
-      case 'contabilizar':
-        this.activeDashboard = false;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = true;
-        this.activeReporteCierreClientes = false;
-        break;
-      case 'reporteCierreClientes':
-        this.activeDashboard = false;
-        this.activeMantenedorUsuarios = false;
-        this.activeFactorCorreccion = false;
-        this.activeHistorialActividades = false;
-        this.activeAperturaExclusion = false;
-        this.activeCierreClientes = false;
-        this.activeContabilizar = false;
-        this.activeReporteCierreClientes = true;
+        this.activeIngresos = false;
+        this.activeGastos = false;
+        this.activePagos = true;
         break;
       default:
-        console.warn('Opción no reconocida:', option);
+        this.activeDashboard = true;
+        this.activeIngresos = false;
+        this.activeGastos = false;
+        this.activePagos = false;
         break;
     }
   }
@@ -184,25 +116,17 @@ export class AppComponent {
       case 'dashboard':
         this.switchDashboard = !value;
         break;
-      case 'mantenedorUsuarios':
-        this.switchMantenedorUsuarios = !value;
+      case 'ingresos':
+        this.switchIngresos = !value;
         break;
-      case 'factorCorreccion':
-        this.switchFactorCorreccion = !value;
+      case 'gastos':
+        this.switchGastos = !value;
         break;
-      case 'historialActividades':
-        this.switchHistorialActividades = !value;
-        break;
-      case 'cierreClientes':
-        this.switchCierreClientes = !value;
-        break;
-      case 'contabilizar':
-        this.switchContabilizar = !value;
-        break;
-      case 'reporteCierreClientes':
-        this.switchReporteCierreClientes = !value;
+      case 'pagos':
+        this.switchPagos = !value;
         break;
       default:
+        this.switchDashboard = !value;
         break;
     }
   }

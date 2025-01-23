@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 /* INICIO ESTILOS BODY */
 body {
@@ -35,7 +35,7 @@ div.gfh-pages-body {
 }
 
 .gfh-indicadores {
-    font-family: 'Nunito', sans-serif !important;
+    font-family: 'Lato', sans-serif !important;
     font-size: 12px !important;
     line-height: 36px !important;
     color: #EFF6FF !important;
@@ -114,6 +114,9 @@ div.gfh-pages-body {
 .ghf-btn {
     background: #2B2B2B !important;
     color: #EFF6FF !important;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
     min-width: 160px !important;
 }
 
@@ -122,6 +125,9 @@ div.gfh-pages-body {
     text-align: center !important;
     color: #EFF6FF !important;
     padding: 0px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
 }
 
 .ghf-btn-dropdown-options {
@@ -139,6 +145,7 @@ div.gfh-pages-body {
     font-size: 24px !important;
     font-weight: 700 !important;
     color: #EFF6FF !important;
+    margin-bottom: 0px !important;
 }
 
 .gfh-titulo {
@@ -148,11 +155,29 @@ div.gfh-pages-body {
     color: #EFF6FF !important;
 }
 
+.gfh-titulo-card {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    color: #666666 !important;
+}
+
+.gfh-valor-total {
+    font-family: 'Lato', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+    margin-bottom: 0px !important;
+}
+
+.gfh-valor-tabla {
+    font-family: 'Lato', sans-serif !important;
+}
+
 .gfh-texto-grafico {
     font-family: 'Nunito', sans-serif !important;
     font-size: 12px !important;
     color: #666666 !important;
-    margin-top: 10px !important;
+    margin-bottom: 16px !important;
 }
 
 .gfh-card {
