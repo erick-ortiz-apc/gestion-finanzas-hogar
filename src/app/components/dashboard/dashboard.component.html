@@ -21,8 +21,8 @@
           <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
               <div class="card-body p-0 d-flex align-items-center">
-                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-in.svg" alt="" width="70px"></div>
-                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-in.svg" alt="" width="37px"></div>
+                <div class="d-xl-none d-xxl-block"><img src="../../../assets/img/money-in.svg" alt="Ingreso" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="../../../assets/img/money-in.svg" alt="Ingreso" width="37px"></div>
                 <div class="ms-3">
                   <p class="gfh-titulo-card mb-1">Anual Ingresos</p>
                   <app-odometer [endValue]="valueAnualTotalIngresos"></app-odometer>
@@ -33,8 +33,8 @@
           <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
               <div class="card-body p-0 d-flex align-items-center">
-                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-out-e.svg" alt="" width="70px"></div>
-                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-out-e.svg" alt="" width="37px"></div>
+                <div class="d-xl-none d-xxl-block"><img src="../../../assets/img/money-out-e.svg" alt="Gasto" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="../../../assets/img/money-out-e.svg" alt="Gasto" width="37px"></div>
                 <div class="ms-3">
                   <p class="gfh-titulo-card mb-1">Anual Gastos Esenciales</p>
                   <app-odometer [endValue]="valueAnualTotalGastosE"></app-odometer>
@@ -45,8 +45,8 @@
           <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
               <div class="card-body p-0 d-flex align-items-center">
-                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-out-not-e.svg" alt="" width="70px"></div>
-                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-out-not-e.svg" alt="" width="37px"></div>
+                <div class="d-xl-none d-xxl-block"><img src="../../../assets/img/money-out-not-e.svg" alt="Gasto" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="../../../assets/img/money-out-not-e.svg" alt="Gasto" width="37px"></div>
                 <div class="ms-3">
                   <p class="gfh-titulo-card mb-1">Gastos Anual No Esenciales</p>
                   <app-odometer [endValue]="valueAnualTotalGastosNoE"></app-odometer>
@@ -57,8 +57,8 @@
           <div class="col-12 col-md-6 col-xl-3 mb-4">
             <div class="card gfh-card">
               <div class="card-body p-0 d-flex align-items-center">
-                <div class="d-xl-none d-xxl-block"><img src="./assets/img/money-free.svg" alt="" width="70px"></div>
-                <div class="d-none d-xl-block d-xxl-none"><img src="./assets/img/money-free.svg" alt="" width="37px"></div>
+                <div class="d-xl-none d-xxl-block"><img src="../../../assets/img/money-free.svg" alt="Dinero" width="70px"></div>
+                <div class="d-none d-xl-block d-xxl-none"><img src="../../../assets/img/money-free.svg" alt="Dinero" width="37px"></div>
                 <div class="ms-3">
                   <p class="gfh-titulo-card mb-1">Anual Restante</p>
                   <app-odometer [endValue]="valueAnualTotalRestante"></app-odometer>
@@ -98,13 +98,13 @@
                     <p class="gfh-titulo-card">Listado de Tendencia</p>
                     <div class="gfh-legend">
                       <span class="gfh-texto-grafico">
-                        <img src="/assets/img/flecha-up.svg" alt="Icono" class="me-1">Mayor al mes anterior
+                        <img src="/assets/img/flecha-up.svg" alt="Icono" class="me-2">Mayor al mes anterior
                       </span>
                       <span class="gfh-texto-grafico">
-                        <img src="/assets/img/flecha-no.svg" alt="Icono" class="me-1">Igual al mes anterior
+                        <img src="/assets/img/flecha-no.svg" alt="Icono" class="me-2">Igual al mes anterior
                       </span>
                       <span class="gfh-texto-grafico">
-                        <img src="/assets/img/flecha-down.svg" alt="Icono" class="me-1">Menor al mes anterior
+                        <img src="/assets/img/flecha-down.svg" alt="Icono" class="me-2">Menor al mes anterior
                       </span>
                     </div>
                   </div>
@@ -124,15 +124,15 @@
                           <tr *ngIf="i > 0">
                             <td>{{ month.name }}</td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.totalIncome, i > 0 ? year.months[i - 1].totalIncome : null)" alt="Icono" width="12px"/>
+                              <img [src]="getArrowIcon(month.totalIncome, i > 0 ? year.months[i - 1].totalIncome : null)" alt="Icono" class="me-2" width="12px"/>
                               {{ month.totalIncome | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.essentialExpenses, i > 0 ? year.months[i - 1].essentialExpenses : null)" alt="Icono" width="12px"/>
+                              <img [src]="getArrowIcon(month.essentialExpenses, i > 0 ? year.months[i - 1].essentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
                               {{ month.essentialExpenses | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.nonEssentialExpenses, i > 0 ? year.months[i - 1].nonEssentialExpenses : null)" alt="Icono" width="12px"/>
+                              <img [src]="getArrowIcon(month.nonEssentialExpenses, i > 0 ? year.months[i - 1].nonEssentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
                               {{ month.nonEssentialExpenses | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
