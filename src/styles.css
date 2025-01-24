@@ -277,3 +277,13 @@ color: #aaa !important;
     border-radius: 10px !important;
     padding: 20px !important;
 }
+
+input[type="text"].gfh-input-edit-income {
+    height: 18px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 16px !important;
+    text-align: end !important;
+    color: #EFF6FF !important;
+}

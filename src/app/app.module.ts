@@ -13,6 +13,7 @@ import { IngresosComponent } from './components/ingresos/ingresos.component';
 import { GastosComponent } from './components/gastos/gastos.component';
 import { PagosComponent } from './components/pagos/pagos.component';
 import { MaterialModule } from './material.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,12 @@ import { MaterialModule } from './material.module';
     NgbDropdownModule,
     MaterialModule,
     RouterModule.forRoot([]),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      preventDuplicates: true,
+      closeButton: true
+    }),
     NgbModule
   ],
   providers: [],
