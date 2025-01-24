@@ -5,7 +5,7 @@
         <img src="assets/img/logo-gfh.svg" alt="Logo" height="36">
       </a>
     </div>
-    <div class="col-10 d-flex justify-content-end align-items-center gap-5">
+    <div class="col-10 d-none d-sm-flex justify-content-end align-items-center gap-5">
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">FECHA: <b>{{ fechaActual | date:'dd-MM-yyyy' }}</b></span>
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">UF:  <b>{{ ufValue | localeFormat }}</b></span>
       <span class="gfh-indicadores" *ngIf="fechaActual !== null; else loading">DÓLAR: <b>{{ dolarValue | localeFormat }}</b></span>
@@ -15,7 +15,7 @@
 </nav>
 
 
-<div class="gfh-sidebar-container pt-1" [style.width.px]="sidebarWidth" (mouseenter)="expandSidebar()" (mouseleave)="collapseSidebar()">
+<div class="gfh-sidebar-container pt-1 d-none d-md-block" [style.width.px]="sidebarWidth" (mouseenter)="expandSidebar()" (mouseleave)="collapseSidebar()">
   <nav class="nav flex-column">
     <!-- Botón Dashboard -->
     <div class="row">
@@ -84,6 +84,78 @@
             <img [hidden]="switchPagos" src="assets/img/icon-pagos{{ activePagos ? '-active' : '' }}.svg"  
             [ngClass]="{ selected: activePagos && sidebarComprimido }" width="40px"/>
             Portal de Pagos
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </nav>
+</div>
+<div class="gfh-sidebar-container pt-1 d-md-none" [style.width.px]="sidebarWidth">
+  <nav class="nav flex-column">
+    <!-- Botón Dashboard -->
+    <div class="row">
+      <div class="col-12">
+        <div class="gfh-container-btn-sidebar">
+          <button type="button" class="gfh-btn-sidebar-mobile" routerLink="/dashboard"
+            (click)="selectOptionSidebar('dashboard')"
+            [ngClass]="{ selected: activeDashboard && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'dashboard')"
+            (mouseleave)="cambarColorIcono(true, 'dashboard')">
+            <img [hidden]="!switchDashboard" src="assets/img/icon-dashboard-active.svg" width="40px"/>
+            <img [hidden]="switchDashboard" src="assets/img/icon-dashboard{{ activeDashboard ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeDashboard && sidebarComprimido }" width="40px"/>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Ingresos -->
+    <div class="row">
+      <div class="col-12">
+        <div class="gfh-container-btn-sidebar">
+          <button type="button" class="gfh-btn-sidebar-mobile" routerLink="/ingresos"
+            (click)="selectOptionSidebar('ingresos')"
+            [ngClass]="{ selected: activeIngresos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'ingresos')"
+            (mouseleave)="cambarColorIcono(true, 'ingresos')">
+            <img [hidden]="!switchIngresos" src="assets/img/icon-ingresos-active.svg" width="40px"/>
+            <img [hidden]="switchIngresos" src="assets/img/icon-ingresos{{ activeIngresos ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeIngresos && sidebarComprimido }" width="40px"/>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Gastos -->
+    <div class="row">
+      <div class="col-12">
+        <div class="gfh-container-btn-sidebar">
+          <button type="button" class="gfh-btn-sidebar-mobile" routerLink="/gastos"
+            (click)="selectOptionSidebar('gastos')"
+            [ngClass]="{ selected: activeGastos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'gastos')"
+            (mouseleave)="cambarColorIcono(true, 'gastos')">
+            <img [hidden]="!switchGastos" src="assets/img/icon-gastos-active.svg" width="40px"/>
+            <img [hidden]="switchGastos" src="assets/img/icon-gastos{{ activeGastos ? '-active' : '' }}.svg"
+            [ngClass]="{ selected: activeGastos && sidebarComprimido }" width="40px"/>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Pagos -->
+    <div class="row">
+      <div class="col-12">
+        <div class="gfh-container-btn-sidebar">
+          <button type="button" class="gfh-btn-sidebar-mobile" routerLink="/pagos"
+            (click)="selectOptionSidebar('pagos')"
+            [ngClass]="{ selected: activePagos && !sidebarComprimido }"
+            (mouseenter)="cambarColorIcono(false, 'pagos')"
+            (mouseleave)="cambarColorIcono(true, 'pagos')">
+            <img [hidden]="!switchPagos" src="assets/img/icon-pagos-active.svg" width="40px"/>
+            <img [hidden]="switchPagos" src="assets/img/icon-pagos{{ activePagos ? '-active' : '' }}.svg"  
+            [ngClass]="{ selected: activePagos && sidebarComprimido }" width="40px"/>
           </button>
         </div>
       </div>

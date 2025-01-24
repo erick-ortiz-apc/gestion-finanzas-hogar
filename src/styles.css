@@ -105,6 +105,48 @@ div.gfh-pages-body {
     background: transparent !important;
 }
 
+.gfh-btn-sidebar-mobile {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    border: none !important;
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 23.68px !important;
+    text-align: left !important;
+    color: #969696 !important;
+}
+
+.gfh-btn-sidebar-mobile.selected {
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+    background-color: #2B2B2B !important;
+    border-radius: 10px !important;
+}
+
+.gfh-btn-sidebar-mobile:hover {
+    color: #EFF6FF !important;
+    background-color: #2B2B2B !important;
+    border-radius: 10px !important;
+}
+
+.gfh-btn-sidebar-mobile img.selected {
+    padding: 10px !important;
+    border-radius: 10px !important;
+    background: #2B2B2B !important;
+}
+
+.gfh-btn-sidebar-mobile img {
+    padding: 10px !important;
+    border-radius: 10px !important;
+    background: transparent !important;
+}
+
 .gfh-text-off {
     color: transparent !important;
 }
