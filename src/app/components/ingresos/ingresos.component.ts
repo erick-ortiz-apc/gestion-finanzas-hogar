@@ -11,13 +11,127 @@ export class IngresosComponent implements OnInit {
   hiddenForm: boolean = true;
   hiddenMonths: boolean = true;
   montoProvisorio: number = 0;
+  hiddenErroMessage: boolean = true;
   
+  data = [
+    {
+      id: 1,
+      hidden_details: true,
+      year: 2022,
+      income_details: {
+        income_name: "Ingreso por remuneracion Erick",
+        monthly_income: [
+          { month: "Enero", amount: 1000000 },
+          { month: "Febrero", amount: 1000000 },
+          { month: "Marzo", amount: 1000000 },
+          { month: "Abril", amount: 1000000 },
+          { month: "Mayo", amount: 1000000 },
+          { month: "Junio", amount: 1000000 },
+          { month: "Julio", amount: 1000000 },
+          { month: "Agosto", amount: 1000000 },
+          { month: "Septiembre", amount: 1000000 },
+          { month: "Octubre", amount: 1000000 },
+          { month: "Noviembre", amount: 1000000 },
+          { month: "Diciembre", amount: 1000000 }
+        ]
+      }
+    },    
+    {
+      id: 2,
+      hidden_details: true,
+      year: 2023,
+      income_details: {
+        income_name: "Ingreso por remuneracion Erick",
+        monthly_income: [
+          { month: "Enero", amount: 1000000 },
+          { month: "Febrero", amount: 1000000 },
+          { month: "Marzo", amount: 1000000 },
+          { month: "Abril", amount: 1000000 },
+          { month: "Mayo", amount: 1000000 },
+          { month: "Junio", amount: 1000000 },
+          { month: "Julio", amount: 1000000 },
+          { month: "Agosto", amount: 1000000 },
+          { month: "Septiembre", amount: 1000000 },
+          { month: "Octubre", amount: 1000000 },
+          { month: "Noviembre", amount: 1000000 },
+          { month: "Diciembre", amount: 1000000 }
+        ]
+      }
+    },    
+    {
+      id: 3,
+      hidden_details: true,
+      year: 2024,
+      income_details: {
+        income_name: "Ingreso por remuneracion Conny",
+        monthly_income: [
+          { month: "Enero", amount: 1000000 },
+          { month: "Febrero", amount: 1000000 },
+          { month: "Marzo", amount: 1000000 },
+          { month: "Abril", amount: 1000000 },
+          { month: "Mayo", amount: 1000000 },
+          { month: "Junio", amount: 1000000 },
+          { month: "Julio", amount: 1000000 },
+          { month: "Agosto", amount: 1000000 },
+          { month: "Septiembre", amount: 1000000 },
+          { month: "Octubre", amount: 1000000 },
+          { month: "Noviembre", amount: 1000000 },
+          { month: "Diciembre", amount: 1000000 }
+        ]
+      }
+    },    
+    {
+      id: 4,
+      hidden_details: true,
+      year: 2024,
+      income_details: {
+        income_name: "Ingreso por remuneracion Erick",
+        monthly_income: [
+          { month: "Enero", amount: 1000000 },
+          { month: "Febrero", amount: 1000000 },
+          { month: "Marzo", amount: 1000000 },
+          { month: "Abril", amount: 1000000 },
+          { month: "Mayo", amount: 1000000 },
+          { month: "Junio", amount: 1000000 },
+          { month: "Julio", amount: 1000000 },
+          { month: "Agosto", amount: 1000000 },
+          { month: "Septiembre", amount: 1000000 },
+          { month: "Octubre", amount: 1000000 },
+          { month: "Noviembre", amount: 1000000 },
+          { month: "Diciembre", amount: 1000000 }
+        ]
+      }
+    },    
+    {
+      id: 5,
+      hidden_details: true,
+      year: 2025,
+      income_details: {
+        income_name: "Ingreso por remuneracion Erick",
+        monthly_income: [
+          { month: "Enero", amount: 1000000 },
+          { month: "Febrero", amount: 1000000 },
+          { month: "Marzo", amount: 1000000 },
+          { month: "Abril", amount: 1000000 },
+          { month: "Mayo", amount: 1000000 },
+          { month: "Junio", amount: 1000000 },
+          { month: "Julio", amount: 1000000 },
+          { month: "Agosto", amount: 1000000 },
+          { month: "Septiembre", amount: 1000000 },
+          { month: "Octubre", amount: 1000000 },
+          { month: "Noviembre", amount: 1000000 },
+          { month: "Diciembre", amount: 1000000 }
+        ]
+      }
+    },    
+  ];
+
   constructor(
     private readonly _formBuilder: FormBuilder
   ) {
     this.ingresoForm = this._formBuilder.group({
       ingresoNombre: ['', Validators.required],
-      ingresoPeriodo: [null],
+      ingresoPeriodo: [''],
       ingresoMonto: ['', Validators.required],
       ingresoTodosMeses: [true],
       ingresoEnero: [''],
@@ -34,7 +148,7 @@ export class IngresosComponent implements OnInit {
       ingresoDiciembre: [''],
     });
   }
-  
+
   ngOnInit() {
   }
 
@@ -62,5 +176,49 @@ export class IngresosComponent implements OnInit {
       this.ingresoForm.patchValue({ ingresoMonto: '' });
       this.ingresoForm.controls['ingresoMonto'].disable();
     }
+  }
+
+  createNewIncome() {
+    if (this.ingresoForm.valid) {
+      const montoAnual = this.ingresoForm.controls['ingresoTodosMeses'].value == '' ? 0 : this.ingresoForm.controls['ingresoTodosMeses'].value;
+
+      if (this.ingresoForm.controls['ingresoTodosMeses'].value) {
+        if (montoAnual > 0) {
+          
+        } else {
+          this.hiddenErroMessage = false;
+        }
+      } else {
+      }
+    } else {
+      this.hiddenErroMessage = false;
+    }
+  }
+
+  cleanError() {
+    this.hiddenErroMessage = true;
+  }
+
+  cancelForm() {
+    this.hiddenErroMessage = true;
+    this.hiddenForm = true;
+    this.ingresoForm.patchValue({
+      ingresoNombre: '',
+      ingresoPeriodo: '',
+      ingresoMonto: '',
+      ingresoTodosMeses: true,
+      ingresoEnero: '',
+      ingresoFebrero: '',
+      ingresoMarzo: '',
+      ingresoAbril: '',
+      ingresoMayo: '',
+      ingresoJunio: '',
+      ingresoJulio: '',
+      ingresoAgosto: '',
+      ingresoSeptiembre: '',
+      ingresoOctubre: '',
+      ingresoNoviembre: '',
+      ingresoDiciembre: '',
+    });
   }
 }
