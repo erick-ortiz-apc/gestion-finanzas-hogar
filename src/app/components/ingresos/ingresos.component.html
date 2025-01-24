@@ -1,3 +1,278 @@
-<p>
-  ingresos works!
-</p>
+<div class="container-fluid p-5 pb-3 pt-3">
+  <div class="ms-5">
+    <div class="row">
+
+      <!-- BREADCRUMB -->
+      <div class="col-12 mb-3 d-flex align-items-center justify-content-between">
+        <p class="gfh-titulo-component">Gestión de Ingresos</p>
+        <button type="button" class="btn gfh-btn-add d-none d-sm-block" (click)="hiddenForm = !hiddenForm">
+          <img src="assets/img/add.svg" alt="Añadir" class="me-2">Añadir Ingreso
+        </button>
+        <button type="button" class="btn gfh-btn-add-responsive d-sm-none" (click)="hiddenForm = !hiddenForm">
+          <img src="assets/img/add.svg" alt="Añadir">
+        </button>
+      </div>
+
+      <!-- AQUI VA TODO LO DE LA COMPONENTE -->
+      <div class="col-12" [hidden]="hiddenForm">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card gfh-card">
+              <div class="card-body p-0">
+                <form [formGroup]="ingresoForm">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="gfh-titulo-formulario">Nuevo Ingreso</p>
+                    </div>
+                    <div class="col-12 col-xl-6 mb-3">
+                      <label for="ingresoNombre" class="form-label gfh-titulo-card">Nombre Ingreso</label>
+                      <input type="text" formControlName="ingresoNombre" id="ingresoNombre" name="ingresoNombre" placeholder="Ingrese nombre" class="form-control custom-input"/>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 mb-3">
+                      <label for="ingresoPeriodo" class="form-label gfh-titulo-card">Año</label>
+                      <input type="number" formControlName="ingresoPeriodo" id="ingresoPeriodo" name="ingresoPeriodo" placeholder="Ingrese año" min="1900" max="2099"  class="form-control custom-input">
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 mb-3">
+                      <label for="ingresoMonto" class="form-label gfh-titulo-card">Monto</label>
+                      <input type="number" formControlName="ingresoMonto" id="ingresoMonto" name="ingresoMonto" placeholder="Ingrese monto" class="form-control custom-input"/>
+                    </div>
+                    <div class="col-12 mt-2 mb-3">
+                      <div class="row">
+                        <div class="col-12 col-lg-6 d-flex align-items-end justify-content-start gap-3 mb-3">
+                          <label for="ingresoTodosMeses" class="form-label">¿Aplicar monto a todos los meses?</label>
+                          <div class="form-switch d-flex align-items-center gap-2 mb-2 ms-3">
+                              <input class="form-check-input mb-1" type="checkbox" role="switch" formControlName="ingresoTodosMeses" id="ingresoTodosMeses" name="ingresoTodosMeses" (change)="onSwitchChange($event)">
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex align-items-center justify-content-end gap-3 mb-3" *ngIf="ingresoForm.value.ingresoTodosMeses">
+                          <button type="button" class="btn btn-outline-secondary px-5">Cancelar</button>
+                          <button type="button" class="btn btn-outline-success px-5">Añadir Nuevo Ingreso</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12" *ngIf="!ingresoForm.value.ingresoTodosMeses">
+                      <div class="row">
+                        <div class="col-12 mt-3">
+                          <p class="gfh-titulo-formulario">Montos por Mes</p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoEnero" class="form-label gfh-titulo-card">Enero</label>
+                          <input type="number" formControlName="ingresoEnero" id="ingresoEnero" name="ingresoEnero" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoFebrero" class="form-label gfh-titulo-card">Febrero</label>
+                          <input type="number" formControlName="ingresoFebrero" id="ingresoFebrero" name="ingresoFebrero" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoMarzo" class="form-label gfh-titulo-card">Marzo</label>
+                          <input type="number" formControlName="ingresoMarzo" id="ingresoMarzo" name="ingresoMarzo" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoAbril" class="form-label gfh-titulo-card">Abril</label>
+                          <input type="number" formControlName="ingresoAbril" id="ingresoAbril" name="ingresoAbril" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoMayo" class="form-label gfh-titulo-card">Mayo</label>
+                          <input type="number" formControlName="ingresoMayo" id="ingresoMayo" name="ingresoMayo" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoJunio" class="form-label gfh-titulo-card">Junio</label>
+                          <input type="number" formControlName="ingresoJunio" id="ingresoJunio" name="ingresoJunio" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoJulio" class="form-label gfh-titulo-card">Julio</label>
+                          <input type="number" formControlName="ingresoJulio" id="ingresoJulio" name="ingresoJulio" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoAgosto" class="form-label gfh-titulo-card">Agosto</label>
+                          <input type="number" formControlName="ingresoAgosto" id="ingresoAgosto" name="ingresoAgosto" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoSeptiembre" class="form-label gfh-titulo-card">Septiembre</label>
+                          <input type="number" formControlName="ingresoSeptiembre" id="ingresoSeptiembre" name="ingresoSeptiembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoOctubre" class="form-label gfh-titulo-card">Octubre</label>
+                          <input type="number" formControlName="ingresoOctubre" id="ingresoOctubre" name="ingresoOctubre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoNoviembre" class="form-label gfh-titulo-card">Noviembre</label>
+                          <input type="number" formControlName="ingresoNoviembre" id="ingresoNoviembre" name="ingresoNoviembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="ingresoDiciembre" class="form-label gfh-titulo-card">Diciembre</label>
+                          <input type="number" formControlName="ingresoDiciembre" id="ingresoDiciembre" name="ingresoDiciembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex align-items-center justify-content-end gap-3 my-3" *ngIf="!ingresoForm.value.ingresoTodosMeses">
+                      <button type="button" class="btn btn-outline-secondary px-5">Cancelar</button>
+                      <button type="button" class="btn btn-outline-success px-5">Añadir Nuevo Ingreso</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card gfh-card-tabla">
+              <div class="card-body p-0">
+                <table class="table table-borderless gfh-table">
+                  <thead>
+                    <tr >
+                      <th colspan="2">2024</th>
+                    </tr>
+                    <tr >
+                      <th colspan="2">Ingreso por remuneracion amensual (Erick)</th>
+                    </tr>
+                    <tr>
+                      <th>Mes</th>
+                      <th>Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding: 2px 8px !important">Enero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Febrero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Marzo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Abril</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Mayo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Junio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Julio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Agosto</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Septiembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Octubre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Noviembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Diciembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card gfh-card-tabla">
+              <div class="card-body p-0">
+                <table class="table table-borderless gfh-table">
+                  <thead>
+                    <tr >
+                      <th colspan="2">2024</th>
+                    </tr>
+                    <tr >
+                      <th colspan="2">Ingreso por remuneracion amensual (Erick)</th>
+                    </tr>
+                    <tr>
+                      <th>Mes</th>
+                      <th>Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding: 2px 8px !important">Enero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Febrero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Marzo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Abril</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Mayo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Junio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Julio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Agosto</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Septiembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Octubre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Noviembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Diciembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card gfh-card-tabla">
+              <div class="card-body p-0">
+                <table class="table table-borderless gfh-table">
+                  <thead>
+                    <tr >
+                      <th colspan="2">2024</th>
+                    </tr>
+                    <tr >
+                      <th colspan="2">Ingreso por remuneracion amensual (Erick)</th>
+                    </tr>
+                    <tr>
+                      <th>Mes</th>
+                      <th>Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding: 2px 8px !important">Enero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Febrero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Marzo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Abril</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Mayo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Junio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Julio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Agosto</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Septiembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Octubre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Noviembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Diciembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="row">
+          <div class="col-12 mb-4">
+            <div class="card gfh-card-tabla">
+              <div class="card-body p-0">
+                <table class="table table-borderless gfh-table">
+                  <thead>
+                    <tr >
+                      <th colspan="2">2024</th>
+                    </tr>
+                    <tr >
+                      <th colspan="2">Ingreso por remuneracion amensual (Erick)</th>
+                    </tr>
+                    <tr>
+                      <th>Mes</th>
+                      <th>Monto</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="padding: 2px 8px !important">Enero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Febrero</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Marzo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Abril</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Mayo</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Junio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Julio</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Agosto</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Septiembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Octubre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Noviembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                    <tr><td style="padding: 2px 8px !important">Diciembre</td><td class="text-center" style="padding: 2px 8px !important">$ 1.000.000</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

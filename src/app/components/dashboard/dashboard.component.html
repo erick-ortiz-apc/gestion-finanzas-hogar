@@ -10,7 +10,7 @@
             Año: {{ yearSelected }}
           </button>
           <div class="ghf-btn-dropdown" ngbDropdownMenu aria-labelledby="yearDropdown">
-            <button class="ghf-btn-dropdown-options" ngbDropdownItem *ngFor="let year of yearsList" (click)="onYearChange(year)">{{ year }}</button>
+            <button type="button" class="ghf-btn-dropdown-options" ngbDropdownItem *ngFor="let year of yearsList" (click)="onYearChange(year)">{{ year }}</button>
           </div>
         </div>
       </div>

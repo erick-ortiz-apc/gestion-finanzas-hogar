@@ -12,6 +12,7 @@ import { OdometerComponent } from './components/odometer/odometer.component';
 import { IngresosComponent } from './components/ingresos/ingresos.component';
 import { GastosComponent } from './components/gastos/gastos.component';
 import { PagosComponent } from './components/pagos/pagos.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PagosComponent } from './components/pagos/pagos.component';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbDropdownModule,
+    MaterialModule,
     RouterModule.forRoot([]),
     NgbModule
   ],

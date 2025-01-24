@@ -216,3 +216,64 @@ div.gfh-pages-body {
     gap: 30px !important;
     font-family: 'Nunito', sans-serif !important;
 }
+
+.gfh-btn-add {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #2B2B2B !important;
+    color: #EFF6FF !important;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    min-width: 160px !important;
+}
+
+.gfh-btn-add-responsive {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #2B2B2B !important;
+    color: #EFF6FF !important;
+    font-family: 'Lato', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+}
+
+.gfh-btn-add:hover {
+    background-color: #1E1E1E !important;
+}
+
+.gfh-titulo-formulario {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #EFF6FF !important;
+}
+
+.custom-input {
+    background-color: #2b2b2b !important;
+    color: #EFF6FF !important;
+    border: 1px solid #444 !important;
+  }
+  
+.custom-input::placeholder {
+color: #aaa !important;
+}
+
+.form-check-input {
+    background-color: #eff6ff !important;
+    border-color: #00E676 !important;
+}
+
+.form-check-input:checked {
+    background-color: #00E676 !important;
+    border-color: #00E676 !important;
+}
+
+.gfh-card-tabla {
+    background-color: #1E1E1E !important;
+    border: 1px solid #2B2B2B !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+}
