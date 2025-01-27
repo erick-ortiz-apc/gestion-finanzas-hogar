@@ -5,27 +5,209 @@
       <!-- BREADCRUMB -->
       <div class="col-12 mb-3 d-flex align-items-center justify-content-between">
         <p class="gfh-titulo-component">Gestión de Gastos</p>
-        <button type="button" class="btn gfh-btn-add d-none d-sm-block">
+        <button type="button" class="btn gfh-btn-add d-none d-sm-block" (click)="viewForm()" [disabled]="disabledBtnAdd">
           <img src="assets/img/add.svg" alt="Añadir" class="me-2">Añadir Gasto
         </button>
-        <button type="button" class="btn gfh-btn-add-responsive d-sm-none">
+        <button type="button" class="btn gfh-btn-add-responsive d-sm-none" (click)="viewForm()" [disabled]="disabledBtnAdd">
           <img src="assets/img/add.svg" alt="Añadir">
         </button>
       </div>
 
       <!-- AQUI VA TODO LO DE LA COMPONENTE -->
-      <div class="col-12">
+      <div class="col-12" [hidden]="hiddenForm">
         <div class="row">
           <div class="col-12 mb-4">
             <div class="card gfh-card">
               <div class="card-body p-0">
-
-                
+                <form [formGroup]="gastoForm">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="gfh-titulo-formulario">Nuevo Gasto</p>
+                    </div>
+                    <div class="col-12 col-xl-6 mb-3">
+                      <label for="gastoNombre" class="form-label gfh-titulo-card">Nombre Gasto</label>
+                      <input autocomplete="off" (focus)="cleanError()" type="text" formControlName="gastoNombre" id="gastoNombre" name="gastoNombre" placeholder="Ingrese nombre" maxlength="30" class="form-control custom-input"/>
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 mb-3">
+                      <label for="gastoPeriodo" class="form-label gfh-titulo-card">Año</label>
+                      <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoPeriodo" id="gastoPeriodo" name="gastoPeriodo" placeholder="Ingrese año" min="1900" max="2099"  class="form-control custom-input">
+                    </div>
+                    <div class="col-12 col-lg-6 col-xl-3 mb-3">
+                      <label for="gastoMonto" class="form-label gfh-titulo-card">Monto</label>
+                      <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoMonto" id="gastoMonto" name="gastoMonto" placeholder="Ingrese monto" class="form-control custom-input"/>
+                    </div>
+                    <div class="col-12 mt-2 mb-3">
+                      <div class="row">
+                        <div class="col-12 col-xxl-7">
+                          <div class="row">
+                            <div class="col-12 col-lg-6 d-flex align-items-end justify-content-start gap-3 mb-3">
+                              <label for="gastoTodosMeses" class="form-label">¿Es un gasto esencial?</label>
+                              <div class="form-switch d-flex align-items-center gap-2 mb-2 ms-3">
+                                  <input (focus)="cleanError()" class="form-check-input mb-1" type="checkbox" role="switch" formControlName="gastoTodosMeses" id="gastoTodosMeses" name="gastoTodosMeses" (change)="onSwitchChangeTodosMeses($event)">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6 d-flex align-items-end justify-content-start gap-3 mb-3">
+                              <label for="gastoEsencial" class="form-label">¿Aplicar monto a todos los meses?</label>
+                              <div class="form-switch d-flex align-items-center gap-2 mb-2 ms-3">
+                                  <input (focus)="cleanError()" class="form-check-input mb-1" type="checkbox" role="switch" formControlName="gastoEsencial" id="gastoEsencial" name="gastoEsencial">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-none col-12 col-xxl-5 d-sm-flex align-items-center justify-content-end gap-3 mb-3" *ngIf="gastoForm.value.gastoTodosMeses">
+                          <button type="button" class="btn btn-outline-secondary px-5" (click)="cancelForm()">Cancelar</button>
+                          <button type="button" class="btn btn-outline-success px-5" (click)="createNewExpense()">Añadir</button>
+                        </div>
+                        <div class="col-12 d-sm-none mb-3">
+                          <button type="button" class="btn btn-outline-success w-100" (click)="createNewExpense()">Añadir</button>
+                        </div>
+                        <div class="col-12 d-sm-none">
+                          <button type="button" class="btn btn-outline-secondary w-100" (click)="cancelForm()">Cancelar</button>
+                        </div>
+                        <div class="col-12" *ngIf="gastoForm.value.gastoTodosMeses" [hidden]="hiddenErroMessage">
+                          <p class="mb-0 text-end text-danger">Complete los campos obligatorios.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12" *ngIf="!gastoForm.value.gastoTodosMeses">
+                      <div class="row">
+                        <div class="col-12 mt-3">
+                          <p class="gfh-titulo-formulario">Montos por Mes</p>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoEnero" class="form-label gfh-titulo-card">Enero</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoEnero" id="gastoEnero" name="gastoEnero" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoFebrero" class="form-label gfh-titulo-card">Febrero</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoFebrero" id="gastoFebrero" name="gastoFebrero" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoMarzo" class="form-label gfh-titulo-card">Marzo</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoMarzo" id="gastoMarzo" name="gastoMarzo" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoAbril" class="form-label gfh-titulo-card">Abril</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoAbril" id="gastoAbril" name="gastoAbril" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoMayo" class="form-label gfh-titulo-card">Mayo</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoMayo" id="gastoMayo" name="gastoMayo" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoJunio" class="form-label gfh-titulo-card">Junio</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoJunio" id="gastoJunio" name="gastoJunio" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoJulio" class="form-label gfh-titulo-card">Julio</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoJulio" id="gastoJulio" name="gastoJulio" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoAgosto" class="form-label gfh-titulo-card">Agosto</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoAgosto" id="gastoAgosto" name="gastoAgosto" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoSeptiembre" class="form-label gfh-titulo-card">Septiembre</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoSeptiembre" id="gastoSeptiembre" name="gastoSeptiembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoOctubre" class="form-label gfh-titulo-card">Octubre</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoOctubre" id="gastoOctubre" name="gastoOctubre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoNoviembre" class="form-label gfh-titulo-card">Noviembre</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoNoviembre" id="gastoNoviembre" name="gastoNoviembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+                          <label for="gastoDiciembre" class="form-label gfh-titulo-card">Diciembre</label>
+                          <input autocomplete="off" (focus)="cleanError()" type="number" formControlName="gastoDiciembre" id="gastoDiciembre" name="gastoDiciembre" placeholder="Ingrese monto" class="form-control custom-input"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 d-flex align-items-center justify-content-end gap-3 my-3" *ngIf="!gastoForm.value.gastoTodosMeses">
+                      <button type="button" class="btn btn-outline-secondary px-5" (click)="cancelForm()">Cancelar</button>
+                      <button type="button" class="btn btn-outline-success px-5" (click)="createNewExpense()">Añadir</button>
+                    </div>
+                    <div class="col-12" [hidden]="hiddenErroMessage" *ngIf="!gastoForm.value.gastoTodosMeses">
+                      <p class="mb-0 text-end text-danger">Complete los campos obligatorios.</p>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <ng-container *ngIf="data.length > 0; else sinData">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let item of data">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="card gfh-card-tabla">
+                <div class="card-body p-0">
+                  <div class="row">
+                    <div class="col-12 mb-3">
+                      <div class="d-flex align-items-center">
+                        <img src="assets/img/money-out-e.svg" alt="" width="20px" class="me-2" *ngIf="item?.expense_details?.essential_expense">
+                        <img src="assets/img/money-out-not-e.svg" alt="" width="20px" class="me-2" *ngIf="!item?.expense_details?.essential_expense">
+                        <p class="mb-0">{{ item?.year }}</p>
+                      </div>
+                      <p class="gfh-titulo-card mb-0">{{ item?.expense_details?.expense_name }}</p>
+                      <div class="ms-3">
+                      </div>
+                    </div>
+                    <div class="col-12" [ngClass]="{'mb-3': !item.hidden_details}">
+                      <button type="button" class="btn btn-sm w-100" [ngClass]="{'btn-outline-danger': item?.expense_details?.essential_expense, 'btn-outline-warning': !item?.expense_details?.essential_expense}" (click)="item.hidden_details = !item.hidden_details">Ver Detalle
+                        <img src="assets/img/flecha-select-danger.svg" alt="" *ngIf="item?.expense_details?.essential_expense">
+                        <img src="assets/img/flecha-select-warning.svg" alt="" *ngIf="!item?.expense_details?.essential_expense">
+                      </button>
+                    </div>
+                    <div class="col-12" *ngIf="!item.hidden_details">
+                      <table class="table table-borderless gfh-table">
+                        <thead>
+                          <tr>
+                            <th>Mes</th>
+                            <th *ngIf="item.hidden_edit_view">Monto</th>
+                            <th colspan="2" *ngIf="!item.hidden_edit_view">Monto</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let mes of item?.expense_details?.monthly_expense">
+                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important">{{ mes?.month }}</td>
+                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="!item.hidden_edit_view">$</td>
+                            <td class="text-center gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="item.hidden_edit_view">{{ mes?.amount ?? 0 | localeFormat }}</td>
+                            <td style="padding: 2px 0px 2px 8px !important" *ngIf="!item.hidden_edit_view">
+                                <form [formGroup]="gastoForm">
+                                  <input (focus)="hiddenMessageError(item?.id)" type="text" [formControlName]="'gasto' + mes.month" class="form-control gfh-input-edit-expense custom-input">
+                                </form>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p class="text-center text-danger" *ngIf="!item.hidden_message_error">Debe ingresar al menos un monto.</p>
+                      <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="item.hidden_edit_view && item.hidden_delete_view">
+                        <a style="cursor: pointer !important" (click)="editExpense(item?.id)"><img src="assets/img/edit.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="deleteExpense(item?.id)"><img src="assets/img/delete.svg" alt=""></a>
+                      </div>
+                      <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_edit_view">
+                        <a style="cursor: pointer !important" (click)="cancelEdit(item?.id)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptEdit(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                      </div>
+                      <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_delete_view">
+                        <a style="cursor: pointer !important" (click)="cancelDelete(item?.id)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptDelete(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #sinData>
+        <p class="gfh-titulo-card text-center mb-0">No hay gastos registrados.</p>
+      </ng-template>
 
     </div>
   </div>
