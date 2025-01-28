@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { IncomeService } from 'src/app/services/income.service';
 
 @Component({
   selector: 'app-ingresos',
@@ -9,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class IngresosComponent implements OnInit {
 
+  data: any[] = [];
   ingresoForm!: FormGroup;
   hiddenForm: boolean = true;
   hiddenMonths: boolean = true;
@@ -20,135 +22,8 @@ export class IngresosComponent implements OnInit {
     'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
   ]
 
-  data: any[] = [
-    {
-      id: 1,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2022,
-      income_details: {
-        income_name: "Ingreso por remuneracion Erick",
-        monthly_income: [
-          { month: "Enero", amount: 1000000 },
-          { month: "Febrero", amount: 1000000 },
-          { month: "Marzo", amount: 1000000 },
-          { month: "Abril", amount: 1000000 },
-          { month: "Mayo", amount: 1000000 },
-          { month: "Junio", amount: 1000000 },
-          { month: "Julio", amount: 1000000 },
-          { month: "Agosto", amount: 1000000 },
-          { month: "Septiembre", amount: 1000000 },
-          { month: "Octubre", amount: 1000000 },
-          { month: "Noviembre", amount: 1000000 },
-          { month: "Diciembre", amount: 1000000 }
-        ]
-      }
-    },    
-    {
-      id: 2,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2023,
-      income_details: {
-        income_name: "Ingreso por remuneracion Erick",
-        monthly_income: [
-          { month: "Enero", amount: 1000000 },
-          { month: "Febrero", amount: 1000000 },
-          { month: "Marzo", amount: 1000000 },
-          { month: "Abril", amount: 1000000 },
-          { month: "Mayo", amount: 1000000 },
-          { month: "Junio", amount: 1000000 },
-          { month: "Julio", amount: 1000000 },
-          { month: "Agosto", amount: 1000000 },
-          { month: "Septiembre", amount: 1000000 },
-          { month: "Octubre", amount: 1000000 },
-          { month: "Noviembre", amount: 1000000 },
-          { month: "Diciembre", amount: 1000000 }
-        ]
-      }
-    },    
-    {
-      id: 3,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2024,
-      income_details: {
-        income_name: "Ingreso por remuneracion Conny",
-        monthly_income: [
-          { month: "Enero", amount: 1000000 },
-          { month: "Febrero", amount: 1000000 },
-          { month: "Marzo", amount: 1000000 },
-          { month: "Abril", amount: 1000000 },
-          { month: "Mayo", amount: 1000000 },
-          { month: "Junio", amount: 1000000 },
-          { month: "Julio", amount: 1000000 },
-          { month: "Agosto", amount: 1000000 },
-          { month: "Septiembre", amount: 1000000 },
-          { month: "Octubre", amount: 1000000 },
-          { month: "Noviembre", amount: 1000000 },
-          { month: "Diciembre", amount: 1000000 }
-        ]
-      }
-    },    
-    {
-      id: 4,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2024,
-      income_details: {
-        income_name: "Ingreso por remuneracion Erick",
-        monthly_income: [
-          { month: "Enero", amount: 1000000 },
-          { month: "Febrero", amount: 1000000 },
-          { month: "Marzo", amount: 1000000 },
-          { month: "Abril", amount: 1000000 },
-          { month: "Mayo", amount: 1000000 },
-          { month: "Junio", amount: 1000000 },
-          { month: "Julio", amount: 1000000 },
-          { month: "Agosto", amount: 1000000 },
-          { month: "Septiembre", amount: 1000000 },
-          { month: "Octubre", amount: 1000000 },
-          { month: "Noviembre", amount: 1000000 },
-          { month: "Diciembre", amount: 1000000 }
-        ]
-      }
-    },    
-    {
-      id: 5,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2025,
-      income_details: {
-        income_name: "Ingreso por remuneracion Erick",
-        monthly_income: [
-          { month: "Enero", amount: 1000000 },
-          { month: "Febrero", amount: 1000000 },
-          { month: "Marzo", amount: 1000000 },
-          { month: "Abril", amount: 1000000 },
-          { month: "Mayo", amount: 1000000 },
-          { month: "Junio", amount: 1000000 },
-          { month: "Julio", amount: 1000000 },
-          { month: "Agosto", amount: 1000000 },
-          { month: "Septiembre", amount: 1000000 },
-          { month: "Octubre", amount: 1000000 },
-          { month: "Noviembre", amount: 1000000 },
-          { month: "Diciembre", amount: 1000000 }
-        ]
-      }
-    },    
-  ];
-
   constructor(
+    private readonly _incomeService: IncomeService,
     private readonly _formBuilder: FormBuilder,
     private readonly _toastrService: ToastrService,
   ) {
@@ -173,7 +48,24 @@ export class IngresosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.sort((a, b) => b.year - a.year);
+    this.getListIncome();
+  }
+
+  getListIncome() {
+    this._incomeService.getListIncomes().subscribe({
+      next: (data) => {
+        this.data = data.map((item: any) => ({
+          ...item,
+          hidden_details: true,
+          hidden_edit_view: true,
+          hidden_delete_view: true,
+          hidden_message_error: true,
+        }));
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   onSwitchChange(event: any) {
@@ -204,77 +96,86 @@ export class IngresosComponent implements OnInit {
 
   createNewIncome() {
     if (this.ingresoForm.valid) {
-      let newIngreso = {
-        id: (this.data.length + 1),
-        hidden_details: true,
-        hidden_edit_view: true,
-        hidden_delete_view: true,
-        hidden_message_error: true,
-        year: Number(this.ingresoForm.controls['ingresoPeriodo'].value),
-        income_details: {
-          income_name: this.ingresoForm.controls['ingresoNombre'].value,
-          monthly_income: [
-            { month: "Enero", amount: 0 },
-            { month: "Febrero", amount: 0 },
-            { month: "Marzo", amount: 0 },
-            { month: "Abril", amount: 0 },
-            { month: "Mayo", amount: 0 },
-            { month: "Junio", amount: 0 },
-            { month: "Julio", amount: 0 },
-            { month: "Agosto", amount: 0 },
-            { month: "Septiembre", amount: 0 },
-            { month: "Octubre", amount: 0 },
-            { month: "Noviembre", amount: 0 },
-            { month: "Diciembre", amount: 0 }
-          ]
-        }
+      let newIngreso: any = {
+        inSoPeriod: Number(this.ingresoForm.controls['ingresoPeriodo'].value),
+        inSoName: this.ingresoForm.controls['ingresoNombre'].value,
+        MonthlyIncomes: []
       }
-      const montoAnual = this.ingresoForm.controls['ingresoTodosMeses'].value == '' ? 0 : this.ingresoForm.controls['ingresoTodosMeses'].value;
+      const montoAnual = this.ingresoForm.controls['ingresoTodosMeses'].value || 0;
 
       if (this.ingresoForm.controls['ingresoTodosMeses'].value) {
+
         if (montoAnual > 0) {
-          newIngreso.income_details.monthly_income.forEach((mes) =>{
-            mes.amount = Number(this.ingresoForm.controls['ingresoMonto'].value);
-          });
-          this.data.push(newIngreso);
-          this.data.sort((a, b) => b.year - a.year);
-          this.cancelForm();
-          this._toastrService.success('Ingreso añadido correctamente.', 'Gestión de Ingresos');
-        } else {
-          let hayMontos = false;
           this.meses.forEach((mes) => {
-            if (this.ingresoForm.controls[`ingreso${mes}`].value > 0) {
-              hayMontos = true;
-            }
+            return newIngreso?.MonthlyIncomes.push({
+              moInMonth: mes,
+              moInAmount: this.ingresoForm.controls['ingresoMonto'].value
+            });
           });
 
-          if (hayMontos) {
+          this.addIncome(newIngreso);
 
-          } else {
-            this.hiddenErroMessage = false;
-          }
+        } else {
+          this.hiddenErroMessage = false;
         }
       } else {
+        let hayMontos = false;
+        this.meses.forEach((mes) => {
+          if (this.ingresoForm.controls[`ingreso${mes}`].value > 0) {
+            hayMontos = true;
+          }
+        });
+
+        if (hayMontos) {
+          this.meses.forEach((mes) => {
+            return newIngreso?.MonthlyIncomes.push({
+              moInMonth: mes,
+              moInAmount: this.ingresoForm.controls[`ingreso${mes}`].value || 0
+            });
+          });
+
+          console.log(this.ingresoForm.value);
+          console.log(newIngreso);
+
+          this.addIncome(newIngreso);
+        } else {
+          this.hiddenErroMessage = false;
+        }
       }
     } else {
       this.hiddenErroMessage = false;
     }
   }
 
+  addIncome(body: any) {
+    this._incomeService.addIncome(body).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.ingresoForm.controls['ingresoMonto'].enable();
+        this.cancelForm();
+        this._toastrService.success('Ingreso añadido correctamente.', 'Gestión de Ingresos');
+        this.getListIncome();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
   editIncome(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_edit_view = false;
       this.cancelForm();
       this.disabledBtnAdd = true;
-      element.income_details.monthly_income.forEach((income: any) => {
-        this.ingresoForm.controls[`ingreso${income.month}`].setValue(income.amount);
+      element?.MonthlyIncomes.forEach((income: any) => {
+        this.ingresoForm.controls[`ingreso${income?.moInMonth}`].setValue(income?.moInAmount);
       });
     }
   }
 
   deleteIncome(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_delete_view = false;
       this.cancelForm();
@@ -315,7 +216,7 @@ export class IngresosComponent implements OnInit {
   }
 
   cancelEdit(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_edit_view = true;
       element.hidden_message_error = true;
@@ -324,7 +225,7 @@ export class IngresosComponent implements OnInit {
   }
 
   acceptEdit(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       let hayMontos = false;
       this.meses.forEach((mes) => {
@@ -336,9 +237,9 @@ export class IngresosComponent implements OnInit {
         element.hidden_edit_view = true;
         element.hidden_message_error = true;
         this.meses.forEach((mes) => {
-          const itemEdit = element.income_details.monthly_income.find((income: any) => income.month === mes);
+          const itemEdit = element?.MonthlyIncomes.find((income: any) => income?.moInMonth === mes);
           if (itemEdit) {
-            itemEdit.amount = (this.ingresoForm.controls[`ingreso${mes}`].value == ''
+            itemEdit.moInAmount = (this.ingresoForm.controls[`ingreso${mes}`].value == ''
             || this.ingresoForm.controls[`ingreso${mes}`].value == null)
             ? 0 : this.ingresoForm.controls[`ingreso${mes}`].value;
           }
@@ -352,24 +253,31 @@ export class IngresosComponent implements OnInit {
   }
 
   hiddenMessageError(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_message_error = true;
     }
   }
 
+  
+  acceptDelete(id: any) {
+    this._incomeService.deleteIncome(id).subscribe({
+      next: (data) => {
+        this.disabledBtnAdd = false;
+        this._toastrService.success('Ingreso eliminado correctamente.', 'Gestión de Ingresos');
+        this.getListIncome();
+      }, 
+      error: (error) => {
+        console.log(error);        
+      }
+    });
+  }
+
   cancelDelete(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_delete_view = true;
     }
     this.disabledBtnAdd = false;
-  }
-
-  acceptDelete(id: any) {
-    this.data = this.data.filter(item => item.id !== id);
-    this.data.sort((a, b) => b.year - a.year);
-    this.disabledBtnAdd = false;
-    this._toastrService.success('Ingreso eliminado correctamente.', 'Gestión de Ingresos');
   }
 }

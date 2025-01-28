@@ -139,9 +139,9 @@
                     <div class="col-12 mb-3">
                       <div class="d-flex align-items-center">
                         <img src="assets/img/money-in.svg" alt="" width="20px" class="me-2">
-                        <p class="mb-0">{{ item?.year }}</p>
+                        <p class="mb-0">{{ item?.inSoPeriod }}</p>
                       </div>
-                      <p class="gfh-titulo-card mb-0">{{ item?.income_details?.income_name }}</p>
+                      <p class="gfh-titulo-card mb-0">{{ item?.inSoName }}</p>
                       <div class="ms-3">
                       </div>
                     </div>
@@ -160,13 +160,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let mes of item?.income_details?.monthly_income">
-                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important">{{ mes?.month }}</td>
+                          <tr *ngFor="let month of item?.MonthlyIncomes">
+                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important">{{ month?.moInMonth }}</td>
                             <td class="gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="!item.hidden_edit_view">$</td>
-                            <td class="text-center gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="item.hidden_edit_view">{{ mes?.amount ?? 0 | localeFormat }}</td>
+                            <td class="text-center gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="item.hidden_edit_view">{{ month?.moInAmount ?? 0 | localeFormat }}</td>
                             <td style="padding: 2px 0px 2px 8px !important" *ngIf="!item.hidden_edit_view">
                                 <form [formGroup]="ingresoForm">
-                                  <input (focus)="hiddenMessageError(item?.id)" type="text" [formControlName]="'ingreso' + mes.month" class="form-control gfh-input-edit-income custom-input">
+                                  <input (focus)="hiddenMessageError(item?.inSoId)" type="text" [formControlName]="'ingreso' + month?.moInMonth" class="form-control gfh-input-edit-income custom-input">
                                 </form>
                             </td>
                           </tr>
@@ -174,16 +174,16 @@
                       </table>
                       <p class="text-center text-danger" *ngIf="!item.hidden_message_error">Debe ingresar al menos un monto.</p>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="item.hidden_edit_view && item.hidden_delete_view">
-                        <a style="cursor: pointer !important" (click)="editIncome(item?.id)"><img src="assets/img/edit.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="deleteIncome(item?.id)"><img src="assets/img/delete.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="editIncome(item?.inSoId)"><img src="assets/img/edit.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="deleteIncome(item?.inSoId)"><img src="assets/img/delete.svg" alt=""></a>
                       </div>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_edit_view">
-                        <a style="cursor: pointer !important" (click)="cancelEdit(item?.id)"><img src="assets/img/close.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="acceptEdit(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="cancelEdit(item?.inSoId)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptEdit(item?.inSoId)"><img src="assets/img/check.svg" alt=""></a>
                       </div>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_delete_view">
-                        <a style="cursor: pointer !important" (click)="cancelDelete(item?.id)"><img src="assets/img/close.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="acceptDelete(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="cancelDelete(item?.inSoId)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptDelete(item?.inSoId)"><img src="assets/img/check.svg" alt=""></a>
                       </div>
                     </div>
                   </div>
