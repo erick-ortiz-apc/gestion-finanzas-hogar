@@ -20,7 +20,7 @@ export class IngresosComponent implements OnInit {
   meses: string[] = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
     'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ]
+  ];
 
   constructor(
     private readonly _incomeService: IncomeService,
@@ -244,8 +244,17 @@ export class IngresosComponent implements OnInit {
             ? 0 : this.ingresoForm.controls[`ingreso${mes}`].value;
           }
         });
-        this.disabledBtnAdd = false;
-        this._toastrService.success('Ingreso editado correctamente.', 'Gestión de Ingresos');
+        const elementEdit = this.data.find(item => item?.inSoId === id);
+        this._incomeService.editIncome(elementEdit).subscribe({
+          next: (data) => {
+            this.disabledBtnAdd = false;
+            this._toastrService.success('Ingreso editado correctamente.', 'Gestión de Ingresos');
+            this.getListIncome();
+          }, 
+          error: (error) => {
+            console.log(error);        
+          }
+        });
       } else {
         element.hidden_message_error = false;
       }

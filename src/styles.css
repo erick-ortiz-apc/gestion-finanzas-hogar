@@ -329,3 +329,13 @@ input[type="text"].gfh-input-edit-income {
     text-align: end !important;
     color: #EFF6FF !important;
 }
+
+input[type="text"].gfh-input-edit-expense {
+    height: 18px !important;
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    line-height: 16px !important;
+    text-align: end !important;
+    color: #EFF6FF !important;
+}

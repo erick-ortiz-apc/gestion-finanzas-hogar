@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ExpenseService } from 'src/app/services/expense.service';
 
 @Component({
   selector: 'app-gastos',
@@ -8,7 +9,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./gastos.component.css']
 })
 export class GastosComponent implements OnInit {
-gastoForm!: FormGroup;
+
+  data: any[] = [];
+  gastoForm!: FormGroup;
   hiddenForm: boolean = true;
   hiddenMonths: boolean = true;
   montoProvisorio: number = 0;
@@ -17,142 +20,10 @@ gastoForm!: FormGroup;
   meses: string[] = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
     'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ]
-
-  data: any[] = [
-    {
-      id: 1,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2022,
-      expense_details: {
-        expense_name: "Gasto por compras Erick",
-        essential_expense: true,
-        monthly_expense: [
-          { month: "Enero", amount: 100000 },
-          { month: "Febrero", amount: 100000 },
-          { month: "Marzo", amount: 100000 },
-          { month: "Abril", amount: 100000 },
-          { month: "Mayo", amount: 100000 },
-          { month: "Junio", amount: 100000 },
-          { month: "Julio", amount: 100000 },
-          { month: "Agosto", amount: 100000 },
-          { month: "Septiembre", amount: 100000 },
-          { month: "Octubre", amount: 100000 },
-          { month: "Noviembre", amount: 100000 },
-          { month: "Diciembre", amount: 100000 }
-        ]
-      }
-    },    
-    {
-      id: 2,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2023,
-      expense_details: {
-        expense_name: "Gasto por compras Erick",
-        essential_expense: false,
-        monthly_expense: [
-          { month: "Enero", amount: 100000 },
-          { month: "Febrero", amount: 100000 },
-          { month: "Marzo", amount: 100000 },
-          { month: "Abril", amount: 100000 },
-          { month: "Mayo", amount: 100000 },
-          { month: "Junio", amount: 100000 },
-          { month: "Julio", amount: 100000 },
-          { month: "Agosto", amount: 100000 },
-          { month: "Septiembre", amount: 100000 },
-          { month: "Octubre", amount: 100000 },
-          { month: "Noviembre", amount: 100000 },
-          { month: "Diciembre", amount: 100000 }
-        ]
-      }
-    },    
-    {
-      id: 3,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2024,
-      expense_details: {
-        expense_name: "Gasto por compras Conny",
-        essential_expense: false,
-        monthly_expense: [
-          { month: "Enero", amount: 100000 },
-          { month: "Febrero", amount: 100000 },
-          { month: "Marzo", amount: 100000 },
-          { month: "Abril", amount: 100000 },
-          { month: "Mayo", amount: 100000 },
-          { month: "Junio", amount: 100000 },
-          { month: "Julio", amount: 100000 },
-          { month: "Agosto", amount: 100000 },
-          { month: "Septiembre", amount: 100000 },
-          { month: "Octubre", amount: 100000 },
-          { month: "Noviembre", amount: 100000 },
-          { month: "Diciembre", amount: 100000 }
-        ]
-      }
-    },    
-    {
-      id: 4,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2024,
-      expense_details: {
-        expense_name: "Gasto por compras Erick",
-        essential_expense: true,
-        monthly_expense: [
-          { month: "Enero", amount: 100000 },
-          { month: "Febrero", amount: 100000 },
-          { month: "Marzo", amount: 100000 },
-          { month: "Abril", amount: 100000 },
-          { month: "Mayo", amount: 100000 },
-          { month: "Junio", amount: 100000 },
-          { month: "Julio", amount: 100000 },
-          { month: "Agosto", amount: 100000 },
-          { month: "Septiembre", amount: 100000 },
-          { month: "Octubre", amount: 100000 },
-          { month: "Noviembre", amount: 100000 },
-          { month: "Diciembre", amount: 100000 }
-        ]
-      }
-    },    
-    {
-      id: 5,
-      hidden_details: true,
-      hidden_edit_view: true,
-      hidden_delete_view: true,
-      hidden_message_error: true,
-      year: 2025,
-      expense_details: {
-        expense_name: "Gasto por compras Erick",
-        essential_expense: true,
-        monthly_expense: [
-          { month: "Enero", amount: 100000 },
-          { month: "Febrero", amount: 100000 },
-          { month: "Marzo", amount: 100000 },
-          { month: "Abril", amount: 100000 },
-          { month: "Mayo", amount: 100000 },
-          { month: "Junio", amount: 100000 },
-          { month: "Julio", amount: 100000 },
-          { month: "Agosto", amount: 100000 },
-          { month: "Septiembre", amount: 100000 },
-          { month: "Octubre", amount: 100000 },
-          { month: "Noviembre", amount: 100000 },
-          { month: "Diciembre", amount: 100000 }
-        ]
-      }
-    },    
   ];
 
   constructor(
+    private readonly _expenseService: ExpenseService,
     private readonly _formBuilder: FormBuilder,
     private readonly _toastrService: ToastrService,
   ) {
@@ -179,6 +50,24 @@ gastoForm!: FormGroup;
 
   ngOnInit() {
     this.data.sort((a, b) => b.year - a.year);
+    this.getListExpense();
+  }
+
+  getListExpense() {
+    this._expenseService.getListExpenses().subscribe({
+      next: (data) => {
+        this.data = data.map((item: any) => ({
+          ...item,
+          hidden_details: true,
+          hidden_edit_view: true,
+          hidden_delete_view: true,
+          hidden_message_error: true,
+        }));
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
   }
 
   onSwitchChangeTodosMeses(event: any) {
@@ -209,78 +98,87 @@ gastoForm!: FormGroup;
 
   createNewExpense() {
     if (this.gastoForm.valid) {
-      let newGasto = {
-        id: (this.data.length + 1),
-        hidden_details: true,
-        hidden_edit_view: true,
-        hidden_delete_view: true,
-        hidden_message_error: true,
-        year: Number(this.gastoForm.controls['gastoPeriodo'].value),
-        expense_details: {
-          expense_name: this.gastoForm.controls['gastoNombre'].value,
-          essential_expense: this.gastoForm.controls['gastoEsencial'].value,
-          monthly_expense: [
-            { month: "Enero", amount: 0 },
-            { month: "Febrero", amount: 0 },
-            { month: "Marzo", amount: 0 },
-            { month: "Abril", amount: 0 },
-            { month: "Mayo", amount: 0 },
-            { month: "Junio", amount: 0 },
-            { month: "Julio", amount: 0 },
-            { month: "Agosto", amount: 0 },
-            { month: "Septiembre", amount: 0 },
-            { month: "Octubre", amount: 0 },
-            { month: "Noviembre", amount: 0 },
-            { month: "Diciembre", amount: 0 }
-          ]
-        }
+      let newGasto: any = {
+        exSoPeriod: Number(this.gastoForm.controls['gastoPeriodo'].value),
+        exSoName: this.gastoForm.controls['gastoNombre'].value,
+        exSoEssential: this.gastoForm.controls['gastoEsencial'].value,
+        MonthlyExpenses: []
       }
-      const montoAnual = this.gastoForm.controls['gastoTodosMeses'].value == '' ? 0 : this.gastoForm.controls['gastoTodosMeses'].value;
+      const montoAnual = this.gastoForm.controls['gastoTodosMeses'].value || 0;
 
       if (this.gastoForm.controls['gastoTodosMeses'].value) {
+
         if (montoAnual > 0) {
-          newGasto.expense_details.monthly_expense.forEach((mes) =>{
-            mes.amount = Number(this.gastoForm.controls['gastoMonto'].value);
-          });
-          this.data.push(newGasto);
-          this.data.sort((a, b) => b.year - a.year);
-          this.cancelForm();
-          this._toastrService.success('Gasto añadido correctamente.', 'Gestión de Gastos');
-        } else {
-          let hayMontos = false;
           this.meses.forEach((mes) => {
-            if (this.gastoForm.controls[`gasto${mes}`].value > 0) {
-              hayMontos = true;
-            }
+            return newGasto?.MonthlyExpenses.push({
+              moExMonth: mes,
+              moExAmount: this.gastoForm.controls['gastoMonto'].value
+            });
           });
 
-          if (hayMontos) {
+          this.addExpense(newGasto);
 
-          } else {
-            this.hiddenErroMessage = false;
-          }
+        } else {
+          this.hiddenErroMessage = false;
         }
       } else {
+        let hayMontos = false;
+        this.meses.forEach((mes) => {
+          if (this.gastoForm.controls[`gasto${mes}`].value > 0) {
+            hayMontos = true;
+          }
+        });
+
+        if (hayMontos) {
+          this.meses.forEach((mes) => {
+            return newGasto?.MonthlyExpenses.push({
+              moExMonth: mes,
+              moExAmount: this.gastoForm.controls[`gasto${mes}`].value || 0
+            });
+          });
+
+          console.log(this.gastoForm.value);
+          console.log(newGasto);
+
+          this.addExpense(newGasto);
+        } else {
+          this.hiddenErroMessage = false;
+        }
       }
     } else {
       this.hiddenErroMessage = false;
     }
   }
 
+  addExpense(body: any) {
+    this._expenseService.addExpense(body).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.gastoForm.controls['gastoMonto'].enable();
+        this.cancelForm();
+        this._toastrService.success('Gasto añadido correctamente.', 'Gestión de Gastos');
+        this.getListExpense();
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
   editExpense(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       element.hidden_edit_view = false;
       this.cancelForm();
       this.disabledBtnAdd = true;
-      element.expense_details.monthly_expense.forEach((expense: any) => {
-        this.gastoForm.controls[`gasto${expense.month}`].setValue(expense.amount);
+      element.MonthlyExpenses.forEach((expense: any) => {
+        this.gastoForm.controls[`gasto${expense.moExMonth}`].setValue(expense.moExAmount);
       });
     }
   }
 
   deleteExpense(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       element.hidden_delete_view = false;
       this.cancelForm();
@@ -304,6 +202,7 @@ gastoForm!: FormGroup;
       gastoNombre: '',
       gastoPeriodo: '',
       gastoMonto: '',
+      gastoEsencial: true,
       gastoTodosMeses: true,
       gastoEnero: '',
       gastoFebrero: '',
@@ -321,7 +220,7 @@ gastoForm!: FormGroup;
   }
 
   cancelEdit(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       element.hidden_edit_view = true;
       element.hidden_message_error = true;
@@ -330,7 +229,7 @@ gastoForm!: FormGroup;
   }
 
   acceptEdit(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       let hayMontos = false;
       this.meses.forEach((mes) => {
@@ -342,15 +241,25 @@ gastoForm!: FormGroup;
         element.hidden_edit_view = true;
         element.hidden_message_error = true;
         this.meses.forEach((mes) => {
-          const itemEdit = element.expense_details.monthly_expense.find((expense: any) => expense.month === mes);
+          const itemEdit = element.MonthlyExpenses.find((expense: any) => expense.moExMonth === mes);
           if (itemEdit) {
-            itemEdit.amount = (this.gastoForm.controls[`gasto${mes}`].value == ''
+            itemEdit.moExAmount = (this.gastoForm.controls[`gasto${mes}`].value == ''
             || this.gastoForm.controls[`gasto${mes}`].value == null)
             ? 0 : this.gastoForm.controls[`gasto${mes}`].value;
           }
         });
-        this.disabledBtnAdd = false;
-        this._toastrService.success('Gasto editado correctamente.', 'Gestión de Gastos');
+        const elementEdit = this.data.find(item => item?.exSoId === id);
+        console.log({elementEdit});
+        this._expenseService.editExpense(elementEdit).subscribe({
+          next: (data) => {
+            this.disabledBtnAdd = false;
+            this._toastrService.success('Gasto editado correctamente.', 'Gestión de Gastos');
+            this.getListExpense();
+          }, 
+          error: (error) => {
+            console.log(error);        
+          }
+        });
       } else {
         element.hidden_message_error = false;
       }
@@ -358,14 +267,14 @@ gastoForm!: FormGroup;
   }
 
   hiddenMessageError(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       element.hidden_message_error = true;
     }
   }
 
   cancelDelete(id: any) {
-    const element = this.data.find(item => item.id === id);
+    const element = this.data.find(item => item.exSoId === id);
     if (element) {
       element.hidden_delete_view = true;
     }
@@ -373,9 +282,15 @@ gastoForm!: FormGroup;
   }
 
   acceptDelete(id: any) {
-    this.data = this.data.filter(item => item.id !== id);
-    this.data.sort((a, b) => b.year - a.year);
-    this.disabledBtnAdd = false;
-    this._toastrService.success('Gasto eliminado correctamente.', 'Gestión de Gastos');
+    this._expenseService.deleteExpense(id).subscribe({
+      next: (data) => {
+        this.disabledBtnAdd = false;
+        this._toastrService.success('Gasto eliminado correctamente.', 'Gestión de Gastos');
+        this.getListExpense();
+      }, 
+      error: (error) => {
+        console.log(error);        
+      }
+    });
   }
 }

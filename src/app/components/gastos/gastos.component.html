@@ -148,18 +148,18 @@
                   <div class="row">
                     <div class="col-12 mb-3">
                       <div class="d-flex align-items-center">
-                        <img src="assets/img/money-out-e.svg" alt="" width="20px" class="me-2" *ngIf="item?.expense_details?.essential_expense">
-                        <img src="assets/img/money-out-not-e.svg" alt="" width="20px" class="me-2" *ngIf="!item?.expense_details?.essential_expense">
-                        <p class="mb-0">{{ item?.year }}</p>
+                        <img src="assets/img/money-out-e.svg" alt="" width="20px" class="me-2" *ngIf="item?.exSoEssential">
+                        <img src="assets/img/money-out-not-e.svg" alt="" width="20px" class="me-2" *ngIf="!item?.exSoEssential">
+                        <p class="mb-0">{{ item?.exSoPeriod }}</p>
                       </div>
-                      <p class="gfh-titulo-card mb-0">{{ item?.expense_details?.expense_name }}</p>
+                      <p class="gfh-titulo-card mb-0">{{ item?.exSoName }}</p>
                       <div class="ms-3">
                       </div>
                     </div>
                     <div class="col-12" [ngClass]="{'mb-3': !item.hidden_details}">
-                      <button type="button" class="btn btn-sm w-100" [ngClass]="{'btn-outline-danger': item?.expense_details?.essential_expense, 'btn-outline-warning': !item?.expense_details?.essential_expense}" (click)="item.hidden_details = !item.hidden_details">Ver Detalle
-                        <img src="assets/img/flecha-select-danger.svg" alt="" *ngIf="item?.expense_details?.essential_expense">
-                        <img src="assets/img/flecha-select-warning.svg" alt="" *ngIf="!item?.expense_details?.essential_expense">
+                      <button type="button" class="btn btn-sm w-100" [ngClass]="{'btn-outline-danger': item?.exSoEssential, 'btn-outline-warning': !item?.exSoEssential}" (click)="item.hidden_details = !item.hidden_details">Ver Detalle
+                        <img src="assets/img/flecha-select-danger.svg" alt="" *ngIf="item?.exSoEssential">
+                        <img src="assets/img/flecha-select-warning.svg" alt="" *ngIf="!item?.exSoEssential">
                       </button>
                     </div>
                     <div class="col-12" *ngIf="!item.hidden_details">
@@ -172,13 +172,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let mes of item?.expense_details?.monthly_expense">
-                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important">{{ mes?.month }}</td>
+                          <tr *ngFor="let mes of item?.MonthlyExpenses">
+                            <td class="gfh-valor-tabla" style="padding: 2px 8px !important">{{ mes?.moExMonth }}</td>
                             <td class="gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="!item.hidden_edit_view">$</td>
-                            <td class="text-center gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="item.hidden_edit_view">{{ mes?.amount ?? 0 | localeFormat }}</td>
+                            <td class="text-center gfh-valor-tabla" style="padding: 2px 8px !important" *ngIf="item.hidden_edit_view">{{ mes?.moExAmount ?? 0 | localeFormat }}</td>
                             <td style="padding: 2px 0px 2px 8px !important" *ngIf="!item.hidden_edit_view">
                                 <form [formGroup]="gastoForm">
-                                  <input (focus)="hiddenMessageError(item?.id)" type="text" [formControlName]="'gasto' + mes.month" class="form-control gfh-input-edit-expense custom-input">
+                                  <input (focus)="hiddenMessageError(item?.exSoId)" type="text" [formControlName]="'gasto' + mes?.moExMonth" class="form-control gfh-input-edit-expense custom-input">
                                 </form>
                             </td>
                           </tr>
@@ -186,16 +186,16 @@
                       </table>
                       <p class="text-center text-danger" *ngIf="!item.hidden_message_error">Debe ingresar al menos un monto.</p>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="item.hidden_edit_view && item.hidden_delete_view">
-                        <a style="cursor: pointer !important" (click)="editExpense(item?.id)"><img src="assets/img/edit.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="deleteExpense(item?.id)"><img src="assets/img/delete.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="editExpense(item?.exSoId)"><img src="assets/img/edit.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="deleteExpense(item?.exSoId)"><img src="assets/img/delete.svg" alt=""></a>
                       </div>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_edit_view">
-                        <a style="cursor: pointer !important" (click)="cancelEdit(item?.id)"><img src="assets/img/close.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="acceptEdit(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="cancelEdit(item?.exSoId)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptEdit(item?.exSoId)"><img src="assets/img/check.svg" alt=""></a>
                       </div>
                       <div class="w-100 d-flex align-items-center justify-content-center gap-5" *ngIf="!item.hidden_delete_view">
-                        <a style="cursor: pointer !important" (click)="cancelDelete(item?.id)"><img src="assets/img/close.svg" alt=""></a>
-                        <a style="cursor: pointer !important" (click)="acceptDelete(item?.id)"><img src="assets/img/check.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="cancelDelete(item?.exSoId)"><img src="assets/img/close.svg" alt=""></a>
+                        <a style="cursor: pointer !important" (click)="acceptDelete(item?.exSoId)"><img src="assets/img/check.svg" alt=""></a>
                       </div>
                     </div>
                   </div>

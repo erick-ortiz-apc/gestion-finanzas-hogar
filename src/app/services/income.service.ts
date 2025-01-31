@@ -23,4 +23,9 @@ export class IncomeService {
     return this._http.post<any>(`${environment.API_DOMAINS.API_URL_INCOMES}`, body, { headers });
   }
 
+  editIncome(ingreso: any) {
+    const headers = { 'Content-Type': 'application/json' };
+    const body = JSON.stringify(ingreso);
+    return this._http.put<any>(`${environment.API_DOMAINS.API_URL_INCOMES}/${ingreso.inSoId}`, body, { headers });
+  }
 }
