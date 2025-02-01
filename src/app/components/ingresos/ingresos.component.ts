@@ -54,7 +54,7 @@ export class IngresosComponent implements OnInit {
   getListIncome() {
     this._incomeService.getListIncomes().subscribe({
       next: (data) => {
-        this.data = data.map((item: any) => ({
+        this.data = data?.map((item: any) => ({
           ...item,
           hidden_details: true,
           hidden_edit_view: true,
@@ -107,7 +107,7 @@ export class IngresosComponent implements OnInit {
 
         if (montoAnual > 0) {
           this.meses.forEach((mes) => {
-            return newIngreso?.MonthlyIncomes.push({
+            return newIngreso?.MonthlyIncomes?.push({
               moInMonth: mes,
               moInAmount: this.ingresoForm.controls['ingresoMonto'].value
             });
@@ -128,7 +128,7 @@ export class IngresosComponent implements OnInit {
 
         if (hayMontos) {
           this.meses.forEach((mes) => {
-            return newIngreso?.MonthlyIncomes.push({
+            return newIngreso?.MonthlyIncomes?.push({
               moInMonth: mes,
               moInAmount: this.ingresoForm.controls[`ingreso${mes}`].value || 0
             });
@@ -163,19 +163,19 @@ export class IngresosComponent implements OnInit {
   }
 
   editIncome(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_edit_view = false;
       this.cancelForm();
       this.disabledBtnAdd = true;
-      element?.MonthlyIncomes.forEach((income: any) => {
+      element?.MonthlyIncomes?.forEach((income: any) => {
         this.ingresoForm.controls[`ingreso${income?.moInMonth}`].setValue(income?.moInAmount);
       });
     }
   }
 
   deleteIncome(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_delete_view = false;
       this.cancelForm();
@@ -216,7 +216,7 @@ export class IngresosComponent implements OnInit {
   }
 
   cancelEdit(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_edit_view = true;
       element.hidden_message_error = true;
@@ -225,7 +225,7 @@ export class IngresosComponent implements OnInit {
   }
 
   acceptEdit(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       let hayMontos = false;
       this.meses.forEach((mes) => {
@@ -237,14 +237,14 @@ export class IngresosComponent implements OnInit {
         element.hidden_edit_view = true;
         element.hidden_message_error = true;
         this.meses.forEach((mes) => {
-          const itemEdit = element?.MonthlyIncomes.find((income: any) => income?.moInMonth === mes);
+          const itemEdit = element?.MonthlyIncomes?.find((income: any) => income?.moInMonth === mes);
           if (itemEdit) {
             itemEdit.moInAmount = (this.ingresoForm.controls[`ingreso${mes}`].value == ''
             || this.ingresoForm.controls[`ingreso${mes}`].value == null)
             ? 0 : this.ingresoForm.controls[`ingreso${mes}`].value;
           }
         });
-        const elementEdit = this.data.find(item => item?.inSoId === id);
+        const elementEdit = this.data?.find(item => item?.inSoId === id);
         this._incomeService.editIncome(elementEdit).subscribe({
           next: (data) => {
             this.disabledBtnAdd = false;
@@ -262,7 +262,7 @@ export class IngresosComponent implements OnInit {
   }
 
   hiddenMessageError(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_message_error = true;
     }
@@ -283,7 +283,7 @@ export class IngresosComponent implements OnInit {
   }
 
   cancelDelete(id: any) {
-    const element = this.data.find(item => item?.inSoId === id);
+    const element = this.data?.find(item => item?.inSoId === id);
     if (element) {
       element.hidden_delete_view = true;
     }
