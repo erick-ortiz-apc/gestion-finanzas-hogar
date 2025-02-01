@@ -10,7 +10,7 @@
             Año: {{ yearSelected }}
           </button>
           <div class="ghf-btn-dropdown" ngbDropdownMenu aria-labelledby="yearDropdown">
-            <button type="button" class="ghf-btn-dropdown-options" ngbDropdownItem *ngFor="let year of yearsList" (click)="onYearChange(year)">{{ year }}</button>
+            <button type="button" class="ghf-btn-dropdown-options" ngbDropdownItem *ngFor="let period of periodList" (click)="onYearChange(period)">{{ period }}</button>
           </div>
         </div>
       </div>
@@ -120,24 +120,24 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <ng-container *ngFor="let month of year.months; let i = index">
+                        <ng-container *ngFor="let month of data?.months; let i = index">
                           <tr *ngIf="i > 0">
-                            <td>{{ month.name }}</td>
+                            <td>{{ month?.month }}</td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.totalIncome, i > 0 ? year.months[i - 1].totalIncome : null)" alt="Icono" class="me-2" width="12px"/>
-                              {{ month.totalIncome | localeFormat }}
+                              <img [src]="getArrowIcon(month?.totalIncomes, i > 0 ? data?.months[i - 1].totalIncomes : null)" alt="Icono" class="me-2" width="12px"/>
+                              {{ month?.totalIncomes | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.essentialExpenses, i > 0 ? year.months[i - 1].essentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
-                              {{ month.essentialExpenses | localeFormat }}
+                              <img [src]="getArrowIcon(month?.totalEssentialExpenses, i > 0 ? data?.months[i - 1].totalEssentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
+                              {{ month?.totalEssentialExpenses | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon(month.nonEssentialExpenses, i > 0 ? year.months[i - 1].nonEssentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
-                              {{ month.nonEssentialExpenses | localeFormat }}
+                              <img [src]="getArrowIcon(month?.totalNotEssentialExpenses, i > 0 ? data?.months[i - 1].totalNotEssentialExpenses : null)" alt="Icono" class="me-2" width="12px"/>
+                              {{ month?.totalNotEssentialExpenses | localeFormat }}
                             </td>
                             <td class="text-center gfh-valor-tabla">
-                              <img [src]="getArrowIcon((month.totalIncome - month.essentialExpenses - month.nonEssentialExpenses), i > 0 ? (year.months[i - 1].totalIncome - year.months[i - 1].essentialExpenses - year.months[i - 1].nonEssentialExpenses) : null)" alt="Icono" width="12px"/>
-                              {{ (month.totalIncome - month.essentialExpenses - month.nonEssentialExpenses) | localeFormat }}
+                              <img [src]="getArrowIcon((month?.totalIncomes - month?.totalEssentialExpenses - month?.totalNotEssentialExpenses), i > 0 ? (data?.months[i - 1].totalIncomes - data?.months[i - 1].totalEssentialExpenses - data?.months[i - 1].totalNotEssentialExpenses) : null)" alt="Icono" width="12px"/>
+                              {{ (month?.totalIncomes - month?.totalEssentialExpenses - month?.totalNotEssentialExpenses) | localeFormat }}
                             </td>
                           </tr>
                         </ng-container>
