@@ -90,11 +90,11 @@ export class DashboardComponent implements OnInit {
   
   updateCharts() {
     const data1 = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Ingresos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalIncomes),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalIncomes),
           backgroundColor: '#00E676',
           borderColor: '#00E676',
           borderWidth: 1
@@ -103,11 +103,11 @@ export class DashboardComponent implements OnInit {
     };
   
     const data2 = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Gastos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalEssentialExpenses + month.totalNotEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalEssentialExpenses + month?.totalNotEssentialExpenses),
           backgroundColor: '#FF1744',
           borderColor: '#FF1744',
           borderWidth: 1
@@ -116,25 +116,25 @@ export class DashboardComponent implements OnInit {
     };
   
     const data3 = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Ingresos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalIncomes),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalIncomes),
           backgroundColor: '#00E676',
           borderColor: '#00E676',
           borderWidth: 1
         },
         {
           label: 'Gastos Esenciales',
-          data: this.data?.months.slice(1).map((month: any) => month.totalEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalEssentialExpenses),
           backgroundColor: '#FF1744',
           borderColor: '#FF1744',
           borderWidth: 1
         },
         {
           label: 'Gastos No Esenciales',
-          data: this.data?.months.slice(1).map((month: any) => month.totalNotEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalNotEssentialExpenses),
           backgroundColor: '#FFD700',
           borderColor: '#FFD700',
           borderWidth: 1
@@ -153,9 +153,9 @@ export class DashboardComponent implements OnInit {
   }
 
   calculateAnnualValues() {
-    const totalIncomes = this.data?.months.reduce((acc: any, month: any) => acc + month.totalIncomes, 0);
-    const totalEssentialExpenses = this.data?.months.reduce((acc: any, month: any) => acc + month.totalEssentialExpenses, 0);
-    const totalNotEssentialExpenses = this.data?.months.reduce((acc: any, month: any) => acc + month.totalNotEssentialExpenses, 0);
+    const totalIncomes = this.data?.months?.reduce((acc: any, month: any) => acc + month?.totalIncomes, 0);
+    const totalEssentialExpenses = this.data?.months?.reduce((acc: any, month: any) => acc + month?.totalEssentialExpenses, 0);
+    const totalNotEssentialExpenses = this.data?.months?.reduce((acc: any, month: any) => acc + month?.totalNotEssentialExpenses, 0);
     const totalRemaining = totalIncomes - (totalEssentialExpenses + totalNotEssentialExpenses);
   
     this.valueAnualTotalIngresos = totalIncomes;
@@ -173,11 +173,11 @@ export class DashboardComponent implements OnInit {
 
   initCharts() {
     this.dataLineIngresos = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Ingresos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalIncomes),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalIncomes),
           backgroundColor: '#00E676',
           borderColor: '#00E676',
           borderWidth: 1
@@ -186,11 +186,11 @@ export class DashboardComponent implements OnInit {
     };
     
     this.dataLineGastos = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Gastos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalEssentialExpenses + month.totalNotEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalEssentialExpenses + month?.totalNotEssentialExpenses),
           backgroundColor: '#FF1744',
           borderColor: '#FF1744',
           borderWidth: 1
@@ -199,25 +199,25 @@ export class DashboardComponent implements OnInit {
     };
 
     this.dataBarTotales = {
-      labels: this.data?.months.slice(1).map((month: any) => month?.month?.slice(0, 3)),
+      labels: this.data?.months?.slice(1).map((month: any) => month?.month?.slice(0, 3)),
       datasets: [
         {
           label: 'Ingresos',
-          data: this.data?.months.slice(1).map((month: any) => month.totalIncomes),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalIncomes),
           backgroundColor: '#00E676',
           borderColor: '#00E676',
           borderWidth: 1
         },
         {
           label: 'Gastos Esenciales',
-          data: this.data?.months.slice(1).map((month: any) => month.totalEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalEssentialExpenses),
           backgroundColor: '#FF1744',
           borderColor: '#FF1744',
           borderWidth: 1
         },
         {
           label: 'Gastos No Esenciales',
-          data: this.data?.months.slice(1).map((month: any) => month.totalNotEssentialExpenses),
+          data: this.data?.months?.slice(1).map((month: any) => month?.totalNotEssentialExpenses),
           backgroundColor: '#FFD700',
           borderColor: '#FFD700',
           borderWidth: 1
