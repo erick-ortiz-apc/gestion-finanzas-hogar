@@ -49,14 +49,14 @@ export class GastosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.sort((a, b) => b.year - a.year);
+    this.data?.sort((a, b) => b.year - a.year);
     this.getListExpense();
   }
 
   getListExpense() {
     this._expenseService.getListExpenses().subscribe({
       next: (data) => {
-        this.data = data.map((item: any) => ({
+        this.data = data?.map((item: any) => ({
           ...item,
           hidden_details: true,
           hidden_edit_view: true,
@@ -110,7 +110,7 @@ export class GastosComponent implements OnInit {
 
         if (montoAnual > 0) {
           this.meses.forEach((mes) => {
-            return newGasto?.MonthlyExpenses.push({
+            return newGasto?.MonthlyExpenses?.push({
               moExMonth: mes,
               moExAmount: this.gastoForm.controls['gastoMonto'].value
             });
@@ -131,7 +131,7 @@ export class GastosComponent implements OnInit {
 
         if (hayMontos) {
           this.meses.forEach((mes) => {
-            return newGasto?.MonthlyExpenses.push({
+            return newGasto?.MonthlyExpenses?.push({
               moExMonth: mes,
               moExAmount: this.gastoForm.controls[`gasto${mes}`].value || 0
             });
@@ -166,19 +166,19 @@ export class GastosComponent implements OnInit {
   }
 
   editExpense(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       element.hidden_edit_view = false;
       this.cancelForm();
       this.disabledBtnAdd = true;
-      element.MonthlyExpenses.forEach((expense: any) => {
+      element.MonthlyExpenses?.forEach((expense: any) => {
         this.gastoForm.controls[`gasto${expense.moExMonth}`].setValue(expense.moExAmount);
       });
     }
   }
 
   deleteExpense(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       element.hidden_delete_view = false;
       this.cancelForm();
@@ -220,7 +220,7 @@ export class GastosComponent implements OnInit {
   }
 
   cancelEdit(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       element.hidden_edit_view = true;
       element.hidden_message_error = true;
@@ -229,7 +229,7 @@ export class GastosComponent implements OnInit {
   }
 
   acceptEdit(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       let hayMontos = false;
       this.meses.forEach((mes) => {
@@ -241,14 +241,14 @@ export class GastosComponent implements OnInit {
         element.hidden_edit_view = true;
         element.hidden_message_error = true;
         this.meses.forEach((mes) => {
-          const itemEdit = element.MonthlyExpenses.find((expense: any) => expense.moExMonth === mes);
+          const itemEdit = element.MonthlyExpenses?.find((expense: any) => expense.moExMonth === mes);
           if (itemEdit) {
             itemEdit.moExAmount = (this.gastoForm.controls[`gasto${mes}`].value == ''
             || this.gastoForm.controls[`gasto${mes}`].value == null)
             ? 0 : this.gastoForm.controls[`gasto${mes}`].value;
           }
         });
-        const elementEdit = this.data.find(item => item?.exSoId === id);
+        const elementEdit = this.data?.find(item => item?.exSoId === id);
         console.log({elementEdit});
         this._expenseService.editExpense(elementEdit).subscribe({
           next: (data) => {
@@ -267,14 +267,14 @@ export class GastosComponent implements OnInit {
   }
 
   hiddenMessageError(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       element.hidden_message_error = true;
     }
   }
 
   cancelDelete(id: any) {
-    const element = this.data.find(item => item.exSoId === id);
+    const element = this.data?.find(item => item?.exSoId === id);
     if (element) {
       element.hidden_delete_view = true;
     }
